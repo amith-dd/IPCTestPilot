@@ -1,0 +1,19 @@
+package com.swaraj.IPCTestPilot.dto;
+
+public enum Subject {
+	
+	JAVA,
+	JAVA_PROGRAMMING,
+	J2EE,
+	SQL,
+	WEB_TECH,
+	PYTHON,
+	MANUAL_TESTING,
+	HIBERNATE_SPRING_FRAMEWORK,
+	DJANGO,
+	REACT,
+	SELENIUM,
+	FIREFLINK,
+	API_TESTING
+	
+}
