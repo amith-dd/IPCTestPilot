@@ -1,5 +1,6 @@
 package com.swaraj.IPCTestPilot.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class QuizDao {
 		}
 		return null;
 	}
+	
+		public List < Quiz > findAll() {
+       
+			return quizRepo.findAll();
+   
+		}
 	
 	
 
