@@ -2,18 +2,17 @@ package com.swaraj.IPCTestPilot.dao;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.swaraj.IPCTestPilot.dto.Course;
 import com.swaraj.IPCTestPilot.dto.Quiz;
 import com.swaraj.IPCTestPilot.repo.QuizRepo;
-
-import lombok.RequiredArgsConstructor;
-
-@Component
-@RequiredArgsConstructor
+@Repository 
 public class QuizDao {
-	private final QuizRepo quizRepo;
+	@Autowired
+	 QuizRepo quizRepo;
 	public Quiz saveQuiz(Quiz quiz) {
 		return quizRepo.save(quiz);
 	} 
