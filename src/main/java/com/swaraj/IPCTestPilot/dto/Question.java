@@ -21,6 +21,8 @@ public class Question {
 	private String optionB;
 	private String optionC;
 	private String optionD;
+	private String correctAnswer;
+	
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -69,7 +71,6 @@ public class Question {
 	public void setCorrectAnswer(String correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
-	private String correctAnswer;
 	
 	
 	

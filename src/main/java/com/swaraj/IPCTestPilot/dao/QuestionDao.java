@@ -1,4 +1,5 @@
 package com.swaraj.IPCTestPilot.dao;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,6 @@ public class QuestionDao {
 		return null;
 		}
 
-    public List<Question> findAllQuestions(int subjectid) {
-        return repo.findAll();
-    }
-
     public Question deleteQuestion(int questionId) {
         Question question = findQuestion(questionId);
         if (question != null) {
@@ -45,4 +42,15 @@ public class QuestionDao {
         }
         return null;
     }
+    
+    public List<Integer> getQuestions(String subject, int numberOfQuestions) {
+        return repo.findQuestionIdsBySubject(subject, numberOfQuestions);
+    }
+    
+    public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
+        return repo.findAllById(questionIds);
+    }
+
+    
+    
 }
