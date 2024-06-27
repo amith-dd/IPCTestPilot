@@ -10,7 +10,7 @@ import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 @Repository
 public class QuestionDao {
 
-    @Autowired
+    @Autowired 
     private QuestionRepo repo;
 
     public Question saveQuestion(Question question) {
