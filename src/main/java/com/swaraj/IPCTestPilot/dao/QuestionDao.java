@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 //import com.boot.spring.demospringproject.dto.UserEntity;
+=======
+>>>>>>> 2d2a4e1d0a18b77552d433ea14c96b3c565a551e
 import com.swaraj.IPCTestPilot.dto.Question;
 import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 
