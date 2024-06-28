@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.boot.spring.demospringproject.dto.UserEntity;
 import com.swaraj.IPCTestPilot.dto.Question;
 import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 
@@ -28,10 +27,6 @@ public class QuestionDao {
 		return null;
 		}
 
-    public List<Question> findAllQuestions(int subjectid) {
-        return repo.findAll();
-    }
-
     public Question deleteQuestion(int questionId) {
         Question question = findQuestion(questionId);
         if (question != null) {
@@ -49,4 +44,15 @@ public class QuestionDao {
         }
         return null;
     }
+    
+    public List<Integer> getQuestions(String subject, int numberOfQuestions) {
+        return repo.findQuestionIdsBySubject(subject, numberOfQuestions);
+    }
+    
+    public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
+        return repo.findAllById(questionIds);
+    }
+
+    
+    
 }
