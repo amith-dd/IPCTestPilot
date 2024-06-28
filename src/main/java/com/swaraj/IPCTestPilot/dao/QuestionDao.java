@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.boot.spring.demospringproject.dto.UserEntity;
+//import com.boot.spring.demospringproject.dto.UserEntity;
 import com.swaraj.IPCTestPilot.dto.Question;
 import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 
@@ -14,14 +14,14 @@ import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 public class QuestionDao {
 
     @Autowired
-    private QuestionRepo repo;
+    private QuestionRepo questionRepo;
 
     public Question saveQuestion(Question question) {
-        return repo.save(question);
+        return questionRepo.save(question);
     }
 
     public Question findQuestion(int questionId) {
-    	Optional<Question> opQuestion=repo.findById(questionId);
+    	Optional<Question> opQuestion=questionRepo.findById(questionId);
 		if(opQuestion.isPresent()) {
 			return opQuestion.get();
 			}
@@ -29,13 +29,13 @@ public class QuestionDao {
 		}
 
     public List<Question> findAllQuestions(int subjectid) {
-        return repo.findAll();
+        return questionRepo.findAll();
     }
 
     public Question deleteQuestion(int questionId) {
         Question question = findQuestion(questionId);
         if (question != null) {
-            repo.delete(question);
+        	questionRepo.delete(question);
             return question;
         }
         return null;
@@ -45,7 +45,7 @@ public class QuestionDao {
         Question dbQuestion = findQuestion(questionId);
         if (dbQuestion != null) {
             question.setQuestionId(questionId);
-            return repo.save(question);
+            return questionRepo.save(question);
         }
         return null;
     }
