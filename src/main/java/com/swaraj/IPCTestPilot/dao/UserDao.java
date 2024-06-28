@@ -14,47 +14,51 @@ public class UserDao {
     @Autowired
     private UserRepo repo;
 
-    public User saveTrainer(User trainer) {
-        return repo.save(trainer);
+    public User singupUser(User user) {
+        return repo.save(user);
     }
 
-    public User findTrainer(int trainerId) {
-        Optional<User> optTrainer = repo.findById(trainerId);
-        if(optTrainer.isPresent())
+    public User findUser(int userId) {
+        Optional<User> optUser = repo.findById(userId);
+        if(optUser.isPresent())
 		{
-			return optTrainer.get();
+			return optUser.get();
 		}
 		return null;
     }
 
-    public List<User> findAllTrainers() {
+    public List<User> findAllUser() {
         return repo.findAll();
     }
 
-    public User deleteTrainer(int trainerId) {
-    	User trainer = findTrainer(trainerId);
-        if (trainer != null) {
-            repo.delete(trainer);
-            return trainer;
+    public User deleteUser(int userId) {
+    	User user = findUser(userId);
+        if (user != null) {
+            repo.delete(user);
+            return user;
         }
         return null;
     }
 
-    public User updateTrainer(User trainer, int trainerId) {
-    	User dbTrainer = findTrainer(trainerId);
-        if (dbTrainer != null) {
-            trainer.setUserId(trainerId);
+    public User updateUser(User user, int userId) {
+    	User dbUser = findUser(userId);
+        if (dbUser != null) {
+        	user.setUserId(userId);
             
-            return repo.save(trainer);
+            return repo.save(user);
         }
         return null;
     }
-
-    public List<User> findTrainersByCourse(int courseId) {
-		return null;
-        // Assuming you have a method in the repository or a custom query to find trainers by course ID
-//        return repo.findByTrainerCourseIds(courseId);
+    
+    public boolean verifyUser(String email, String password) {
+        Optional<User> optUser = repo.findByUserEmail(email);
+        if (optUser.isPresent()) {
+            User user = optUser.get();
+            return user.getUserPassword().equals(password);
+        }
+        return false;
     }
+ 
 
 
 }

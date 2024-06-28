@@ -12,7 +12,7 @@ import com.swaraj.IPCTestPilot.dto.Question;
 
 public interface QuestionRepo extends JpaRepository<Question, Integer> {
 
-    @Query(value = "SELECT q.questionId FROM Question q WHERE q.subject = :subject ORDER BY q.questionId ASC LIMIT :limit", nativeQuery = true)
+    @Query(value = "SELECT q.questionId FROM Question q WHERE q.subject = :subject ORcDER BY q.questionId ASC LIMIT :limit", nativeQuery = true)
     List<Integer> findQuestionIdsBySubject(@Param("subject") String subject, @Param("limit") int limit);
 }
 	
