@@ -4,52 +4,89 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Repository;
 
-import com.swaraj.IPCTestPilot.dto.Course;
 import com.swaraj.IPCTestPilot.dto.Quiz;
 import com.swaraj.IPCTestPilot.repo.QuizRepo;
-@Repository 
+
+/**
+ * DAO class of {@link Quiz}
+ * 
+ * @author Anjali
+ * 
+ */
+@Repository
 public class QuizDao {
 	@Autowired
-	 QuizRepo quizRepo;
+	QuizRepo quizRepo;
+	@Autowired
+	QuestionDao questionDao;
+
+	/**
+	 * @param quiz
+	 * @return
+	 */ 
 	public Quiz saveQuiz(Quiz quiz) {
 		return quizRepo.save(quiz);
-	} 
-	
+	}
+
+	/**
+	 * @param quizId
+	 * @return
+	 */
 	public Quiz findQuiz(int quizId) {
 		Optional<Quiz> opquiz = quizRepo.findById(quizId);
-		if(opquiz.isPresent()) {
-			return opquiz.get(); 
+		if (opquiz.isPresent()) {
+			return opquiz.get();
 		}
 		return null;
 	}
-	
+
+	/**
+	 * @param quizId
+	 * @return
+	 */
 	public Quiz deleteQuiz(int quizId) {
 		Quiz quiz = findQuiz(quizId);
-		if(quiz!=null) {
+		if (quiz != null) {
 			quizRepo.delete(quiz);
-			return quiz; 
-		} 
+			return quiz;
+		}
 		return null;
 	}
 
-	public Quiz updateQuiz(Quiz quiz, int quizId ) {
+	/**
+	 * @param quiz
+	 * @param quizId
+	 * @return
+	 */
+	public Quiz updateQuiz(Quiz quiz, int quizId) {
 		Quiz dbquiz = findQuiz(quizId);
-		if(dbquiz!=null) {
+		if (dbquiz != null) {
 			quiz.setQuizId(quizId);
 			return quizRepo.save(quiz);
 		}
 		return null;
 	}
-	
-		public List < Quiz > findAll() {
-       
-			return quizRepo.findAll();
-   
-		}
-	
-	
+
+	/**
+	 * @return
+	 */
+	public List<Quiz> findAll() {
+		return quizRepo.findAll();
+	}
+
+	/**
+	 * @param subject
+	 * @param numofQuestions
+	 * @return
+	 */
+	public Quiz createQuiz(String subject, int numofQuestions) {
+		List<Integer> l = questionDao.getQuestions(subject, numofQuestions);
+		Quiz quiz = new Quiz();
+		quiz.setQuestionIds(l);
+		return quizRepo.save(quiz);
+	}
 
 }
