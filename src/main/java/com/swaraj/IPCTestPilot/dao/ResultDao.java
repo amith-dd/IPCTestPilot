@@ -11,14 +11,14 @@ import com.swaraj.IPCTestPilot.repo.ResultRepo;
 @Repository
 public class ResultDao {
 	@Autowired
-	ResultRepo resultRepo;
+	ResultRepo repo;
 	
 	public Result saveResult(Result result) {
-		return resultRepo.save(result);
+		return repo.save(result);
 	}
 	
 	public Result findResult(int studentId) {
-		Optional<Result> opresult = resultRepo.findById(studentId);
+		Optional<Result> opresult =repo.findById(studentId);
 		if(opresult.isPresent()) {
 			return opresult.get();
 		}
@@ -28,7 +28,7 @@ public class ResultDao {
 	public Result deleteResult(int studentId) {
 		Result result = findResult(studentId);
 		if(result!=null) {
-			resultRepo.delete(result);
+			repo.delete(result);
 			return result;
 		}
 		return null;
@@ -36,12 +36,12 @@ public class ResultDao {
 	
 	public List<Result> findAll()
 	{
-		return resultRepo.findAll();
+		return repo.findAll();
 	}
 	
 	public List<Result> findAllById(int studentId)
 	{
-		List<Result> list=resultRepo.findAllById(studentId);
+		List<Result> list=repo.findAllById(studentId);
 		if(list!=null)
 		{
 			return list;

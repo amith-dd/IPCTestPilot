@@ -5,22 +5,21 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.swaraj.IPCTestPilot.dto.Trainer;
-import com.swaraj.IPCTestPilot.repo.TrainerRepo;
+import com.swaraj.IPCTestPilot.dto.User;
+import com.swaraj.IPCTestPilot.repo.UserRepo;
 
 @Repository
-public class TrainerDao {
+public class UserDao {
 
     @Autowired
-    private TrainerRepo repo;
+    private UserRepo repo;
 
-    public Trainer saveTrainer(Trainer trainer) {
+    public User saveTrainer(User trainer) {
         return repo.save(trainer);
     }
 
-    public Trainer findTrainer(int trainerId) {
-        Optional<Trainer> optTrainer = repo.findById(trainerId);
+    public User findTrainer(int trainerId) {
+        Optional<User> optTrainer = repo.findById(trainerId);
         if(optTrainer.isPresent())
 		{
 			return optTrainer.get();
@@ -28,12 +27,12 @@ public class TrainerDao {
 		return null;
     }
 
-    public List<Trainer> findAllTrainers() {
+    public List<User> findAllTrainers() {
         return repo.findAll();
     }
 
-    public Trainer deleteTrainer(int trainerId) {
-        Trainer trainer = findTrainer(trainerId);
+    public User deleteTrainer(int trainerId) {
+    	User trainer = findTrainer(trainerId);
         if (trainer != null) {
             repo.delete(trainer);
             return trainer;
@@ -41,19 +40,20 @@ public class TrainerDao {
         return null;
     }
 
-    public Trainer updateTrainer(Trainer trainer, int trainerId) {
-        Trainer dbTrainer = findTrainer(trainerId);
+    public User updateTrainer(User trainer, int trainerId) {
+    	User dbTrainer = findTrainer(trainerId);
         if (dbTrainer != null) {
-            trainer.setTrainerId(trainerId);
+            trainer.setUserId(trainerId);
             
             return repo.save(trainer);
         }
         return null;
     }
 
-    public List<Trainer> findTrainersByCourse(int courseId) {
+    public List<User> findTrainersByCourse(int courseId) {
+		return null;
         // Assuming you have a method in the repository or a custom query to find trainers by course ID
-        return repo.findByTrainerCourseIds(courseId);
+//        return repo.findByTrainerCourseIds(courseId);
     }
 
 

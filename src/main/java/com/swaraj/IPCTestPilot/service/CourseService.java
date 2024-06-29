@@ -23,7 +23,7 @@ public class CourseService {
 			ResponseStructure<Course> structure = new ResponseStructure<Course>();
 			structure.setData(savedCourse);
 			structure.setMessage("course saved");
-			structure.setStatus(HttpStatus.CREATED.value());
+			structure.setStatus(HttpStatus.CREATED.value());//gives the code
 
 			return new ResponseEntity<ResponseStructure<Course>>(structure, HttpStatus.CREATED);
 
@@ -31,5 +31,7 @@ public class CourseService {
 		return null;
 
 	}
+	
+	
 
 }
