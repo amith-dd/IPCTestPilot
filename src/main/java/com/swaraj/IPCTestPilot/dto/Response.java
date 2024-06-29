@@ -14,11 +14,14 @@ import lombok.Data;
 @Component
 @Entity
 @Data
-public class Course {
+public class Response {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int courseId;
-	private String courseName;
+	int responseId;
+	int quizId;
+	int studentId;
+	int mark;
 	@ElementCollection
-	private List<Integer> subjectIds;	
+	List<String> answers;
 }
