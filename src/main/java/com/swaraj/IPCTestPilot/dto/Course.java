@@ -22,7 +22,6 @@ public class Course {
 	@ElementCollection
 	private List<Integer> subjectIds;
 	
-	
 	public int getCourseId() {
 		return courseId;
 	}

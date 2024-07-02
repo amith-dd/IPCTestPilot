@@ -12,8 +12,10 @@ import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 public class QuestionDao {
 
 
+
     @Autowired
     private QuestionRepo repo;
+
 
 
     public Question saveQuestion(Question question) {
@@ -32,7 +34,6 @@ public class QuestionDao {
     public List<Question> findAllQuestions(int subjectid) {
         return repo.findAll();
     }
-
 
     public Question deleteQuestion(int questionId) {
         Question question = findQuestion(questionId);
