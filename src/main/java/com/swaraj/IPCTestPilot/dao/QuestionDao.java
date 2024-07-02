@@ -2,17 +2,15 @@ package com.swaraj.IPCTestPilot.dao;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.swaraj.IPCTestPilot.dto.Question;
 import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 
 @Repository
 public class QuestionDao {
 
-    @Autowired
+    @Autowired 
     private QuestionRepo repo;
 
     public Question saveQuestion(Question question) {
@@ -45,9 +43,10 @@ public class QuestionDao {
         return null;
     }
     
-    public List<Integer> getQuestions(String subject, int numberOfQuestions) {
-        return repo.findQuestionIdsBySubject(subject, numberOfQuestions);
+    public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
+        return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
     }
+
     
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
         return repo.findAllById(questionIds);
