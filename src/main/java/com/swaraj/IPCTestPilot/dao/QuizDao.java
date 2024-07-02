@@ -84,7 +84,7 @@ public class QuizDao {
 	 * @param numofQuestions
 	 * @return
 	 */
-	public Quiz createQuiz(String subject, int numofQuestions) {
+	public Quiz createQuiz(int subject, int numofQuestions) {
 		List<Integer> l = questionDao.getQuestions(subject, numofQuestions);
 		Quiz quiz = new Quiz();
 		quiz.setQuestionIds(l);
