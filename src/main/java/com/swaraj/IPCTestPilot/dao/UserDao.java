@@ -62,7 +62,7 @@ public class UserDao {
     }
     
  // method to find users by role
-    public List<User> findUsersByRole(String role) {
+    public List<User> findUsersByRole(int role) {
         return repo.findByUserRole(role); 
     }
     
@@ -76,10 +76,10 @@ public class UserDao {
      * @param courseId the ID of the course to search for
      * @return a list of {@link User} objects who are enrolled in the specified course
      */
-    public List<User> findUsersByCourseId(int courseId) {
+    public List<User> findUsersBySubjectId(int subjectId) {
         List<User> users = findAllUser();
         return users.stream()
-                    .filter(user -> user.getUserCourseIds().contains(courseId))
+                    .filter(user -> user.getUserSubjectIds().contains(subjectId))
                     .collect(Collectors.toList());
     }
 
