@@ -12,8 +12,10 @@ import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 public class QuestionDao {
 
 
+
     @Autowired
     private QuestionRepo repo;
+
 
 
     public Question saveQuestion(Question question) {
@@ -33,7 +35,6 @@ public class QuestionDao {
         return repo.findAll();
     }
 
-
     public Question deleteQuestion(int questionId) {
         Question question = findQuestion(questionId);
         if (question != null) {
@@ -52,9 +53,14 @@ public class QuestionDao {
         return null;
     }
     
-    public List<Integer> getQuestions(String subject, int numberOfQuestions) {
-        return repo.findQuestionIdsBySubject(subject, numberOfQuestions);
+
+
+
+    public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
+        return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
+
     }
+
     
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
         return repo.findAllById(questionIds);
