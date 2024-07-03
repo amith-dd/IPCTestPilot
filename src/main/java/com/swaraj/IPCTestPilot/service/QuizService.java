@@ -159,7 +159,7 @@ public class QuizService {
 	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if created
 	 *         successfully
 	 */
-	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final String subject, final int numberofQuestions) {
+	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final int subject, final int numberofQuestions) {
 		final Quiz createdQuiz = dao.createQuiz(subject, numberofQuestions);
 		final ResponseStructure<Quiz> structure = new ResponseStructure<Quiz>();
 		HttpStatus httpStatus = null;

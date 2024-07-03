@@ -14,16 +14,16 @@ public class QuestionDao {
 
 
     @Autowired
-    private QuestionRepo questionRepo;
+    private QuestionRepo repo;
 
 
 
     public Question saveQuestion(Question question) {
-        return questionRepo.save(question);
+        return repo.save(question);
     }
 
     public Question findQuestion(int questionId) {
-    	Optional<Question> opQuestion=questionRepo.findById(questionId);
+    	Optional<Question> opQuestion=repo.findById(questionId);
 		if(opQuestion.isPresent()) {
 			return opQuestion.get();
 			}
@@ -32,13 +32,13 @@ public class QuestionDao {
 
 
     public List<Question> findAllQuestions(int subjectid) {
-        return questionRepo.findAll();
+        return repo.findAll();
     }
 
     public Question deleteQuestion(int questionId) {
         Question question = findQuestion(questionId);
         if (question != null) {
-        	questionRepo.delete(question);
+        	repo.delete(question);
             return question;
         }
         return null;
@@ -48,17 +48,19 @@ public class QuestionDao {
         Question dbQuestion = findQuestion(questionId);
         if (dbQuestion != null) {
             question.setQuestionId(questionId);
-            return questionRepo.save(question);
+            return repo.save(question);
         }
         return null;
     }
     
-    public List<Integer> getQuestions(String subject, int numberOfQuestions) {
-        return questionRepo.findQuestionIdsBySubject(subject, numberOfQuestions);
+
+    public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
+        return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
     }
+
     
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
-        return questionRepo.findAllById(questionIds);
+        return repo.findAllById(questionIds);
     }
 
     
