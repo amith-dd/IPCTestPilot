@@ -20,8 +20,8 @@ public class Course {
 	private int courseId;
 	private String courseName;
 	@ElementCollection
+
 	private List<Integer> subjectIds;
-	
 	
 	public int getCourseId() {
 		return courseId;
@@ -43,5 +43,5 @@ public class Course {
 	}
 	
 	
-	
+
 }

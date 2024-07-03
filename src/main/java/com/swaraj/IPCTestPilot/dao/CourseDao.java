@@ -1,5 +1,6 @@
 package com.swaraj.IPCTestPilot.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.swaraj.IPCTestPilot.dto.Course;
@@ -37,11 +38,16 @@ public class CourseDao {
 			return repo.save(course);
 		}
 		return null;
-		
-		
-		
+
 	}
 	
+	public List<Course> getAll(){
+		List<Course> courses = repo.findAll();
+		if(courses.size()>0) {
+			return courses;
+		}
+		return null;
+	}
 	
 	
 	
