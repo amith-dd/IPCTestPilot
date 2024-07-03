@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.swaraj.IPCTestPilot.dto.Question;
+import com.swaraj.IPCTestPilot.entity.Question;
 import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 
 @Repository
@@ -54,8 +54,11 @@ public class QuestionDao {
     }
     
 
+
+
     public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
         return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
+
     }
 
     

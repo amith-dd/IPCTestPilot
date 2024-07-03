@@ -1,21 +1,27 @@
-package com.swaraj.IPCTestPilot.dto;
+package com.swaraj.IPCTestPilot.entity;
+
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+@Component
 @Entity
 @Data
-@Component
-public class Result {
+public class Response {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int resultId;
-	private int studentId;
-	private int quizId;
-	private int marks;
+	int responseId;
+	int quizId;
+	int studentId;
+	int mark;
+	@ElementCollection
+	List<String> answers;
 }
