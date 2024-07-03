@@ -24,6 +24,7 @@ public class QuizDao {
 	QuestionDao questionDao;
 
 	/**
+	 * This
 	 * @param quiz
 	 * @return
 	 */ 
@@ -75,7 +76,7 @@ public class QuizDao {
 	 */
 	public List<Quiz> findAll() {
 		return quizRepo.findAll();
-	}
+	}                                                         
 
 	/**
 	 * @param subject

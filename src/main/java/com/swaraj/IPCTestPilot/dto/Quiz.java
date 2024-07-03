@@ -18,8 +18,8 @@ public class Quiz {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int quizId;
-	private DifficultyLevel level;
+	private List<Integer> subjectId;
 	@ElementCollection
-	private List<Integer> questionIds;
+	private List<Integer> questionIds; 
 	
 }
