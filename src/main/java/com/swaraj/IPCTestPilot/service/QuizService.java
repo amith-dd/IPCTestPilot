@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.QuizDao;
-import com.swaraj.IPCTestPilot.dto.Quiz;
+import com.swaraj.IPCTestPilot.entity.Quiz;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 /**

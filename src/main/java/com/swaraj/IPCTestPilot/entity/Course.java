@@ -1,4 +1,4 @@
-package com.swaraj.IPCTestPilot.dto;
+package com.swaraj.IPCTestPilot.entity;
 
 import java.util.List;
 

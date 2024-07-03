@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.swaraj.IPCTestPilot.dto.Response;
+import com.swaraj.IPCTestPilot.entity.Response;
 import com.swaraj.IPCTestPilot.repo.ResponseRepo;
 
 @Repository

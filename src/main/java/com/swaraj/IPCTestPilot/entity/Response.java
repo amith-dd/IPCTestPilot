@@ -1,4 +1,4 @@
-package com.swaraj.IPCTestPilot.dto;
+package com.swaraj.IPCTestPilot.entity;
 
 import java.util.List;
 
@@ -10,19 +10,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
 @Component
-public class Quiz {
+@Entity
+@Data
+public class Response {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int quizId;
-	private List<Integer> subjectId;
+	int responseId;
+	int quizId;
+	int studentId;
+	int mark;
 	@ElementCollection
-	private List<Integer> questionIds; 
-	
+	List<String> answers;
 }
