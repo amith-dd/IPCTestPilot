@@ -54,8 +54,11 @@ public class QuestionDao {
     }
     
 
+
+
     public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
         return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
+
     }
 
     

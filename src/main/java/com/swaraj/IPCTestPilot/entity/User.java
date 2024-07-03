@@ -22,8 +22,10 @@ public class User {
 	private long userContact;
 	private String userEmail;
 	private String userPassword;
+	private int userRole;
 	@ElementCollection
-	private List<Integer> userCourseIds;
+	private List<Integer> userSubjectIds;
+
 	public int getUserId() {
 		return userId;
 	}
@@ -54,11 +56,19 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	public List<Integer> getUserCourseIds() {
-		return userCourseIds;
+	public int getUserRole() {
+		return userRole;
 	}
-	public void setUserCourseIds(List<Integer> userCourseIds) {
-		this.userCourseIds = userCourseIds;
+	
+	public void setUserRole(int userRole)
+	{
+		this.userRole=userRole;
+	}
+	public List<Integer> getUserSubjectIds() {
+		return userSubjectIds;
+	}
+	public void setUserSubjectIds(List<Integer> userSubjectIds) {
+		this.userSubjectIds = userSubjectIds;
 	}
 	
 	
