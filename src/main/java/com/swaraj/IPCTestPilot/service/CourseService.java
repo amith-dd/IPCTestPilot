@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.swaraj.IPCTestPilot.dao.CourseDao;
-import com.swaraj.IPCTestPilot.entity.Course;
-import com.swaraj.IPCTestPilot.entity.Subject;
+import com.swaraj.IPCTestPilot.dto.Course;
+import com.swaraj.IPCTestPilot.dto.Subject;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service

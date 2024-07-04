@@ -1,4 +1,4 @@
-package com.swaraj.IPCTestPilot.entity;
+package com.swaraj.IPCTestPilot.dto;
 
 import org.springframework.stereotype.Component;
 

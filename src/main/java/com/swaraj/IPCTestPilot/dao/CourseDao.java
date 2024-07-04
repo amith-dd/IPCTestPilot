@@ -3,7 +3,7 @@ package com.swaraj.IPCTestPilot.dao;
 import java.util.List;
 import java.util.Optional;
 
-import com.swaraj.IPCTestPilot.entity.Course;
+import com.swaraj.IPCTestPilot.dto.Course;
 import com.swaraj.IPCTestPilot.repo.CourseRepo;
 
 public class CourseDao {

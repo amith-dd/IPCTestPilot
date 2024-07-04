@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
 import com.swaraj.IPCTestPilot.dao.QuizDao;
 import com.swaraj.IPCTestPilot.dao.ResponseDao;
-import com.swaraj.IPCTestPilot.entity.Response;
+import com.swaraj.IPCTestPilot.dto.Response;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
