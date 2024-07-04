@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.QuizDao;
-import com.swaraj.IPCTestPilot.dto.Quiz;
+import com.swaraj.IPCTestPilot.entity.Quiz;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 /**
@@ -159,7 +159,7 @@ public class QuizService {
 	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if created
 	 *         successfully
 	 */
-	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final String subject, final int numberofQuestions) {
+	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final int subject, final int numberofQuestions) {
 		final Quiz createdQuiz = dao.createQuiz(subject, numberofQuestions);
 		final ResponseStructure<Quiz> structure = new ResponseStructure<Quiz>();
 		HttpStatus httpStatus = null;

@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.stereotype.Repository;
 
-
-import com.swaraj.IPCTestPilot.dto.Quiz;
+import com.swaraj.IPCTestPilot.entity.Quiz;
 import com.swaraj.IPCTestPilot.repo.QuizRepo;
 
 /**
@@ -84,7 +81,7 @@ public class QuizDao {
 	 * @param numofQuestions
 	 * @return
 	 */
-	public Quiz createQuiz(String subject, int numofQuestions) {
+	public Quiz createQuiz(int subject, int numofQuestions) {
 		List<Integer> l = questionDao.getQuestions(subject, numofQuestions);
 		Quiz quiz = new Quiz();
 		quiz.setQuestionIds(l);
