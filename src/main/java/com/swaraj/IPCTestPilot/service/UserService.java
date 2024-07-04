@@ -29,6 +29,7 @@ public class UserService {
             UserDto udto = new UserDto();
             mapper.map(singupUser, udto);
 
+
             ResponseStructure<UserDto> structure = new ResponseStructure<>();
             structure.setData(udto);
             structure.setMessage("User saved successfully");
@@ -144,4 +145,9 @@ public class UserService {
 
         return new ResponseEntity<>(structure, HttpStatus.OK);
     }
+
+	
+	
+	
+
 }
