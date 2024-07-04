@@ -7,7 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
+<<<<<<< HEAD
 import com.swaraj.IPCTestPilot.dto.Question;
+=======
+import com.swaraj.IPCTestPilot.entity.Course;
+import com.swaraj.IPCTestPilot.entity.Question;
+>>>>>>> 03026fed75378094f4a1c201109b2d2a8c5855fd
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
