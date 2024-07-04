@@ -159,13 +159,13 @@ public class QuizService {
 	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if created
 	 *         successfully
 	 */
-	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final int subject, final int numberofQuestions) {
-		final Quiz createdQuiz = dao.createQuiz(subject, numberofQuestions);
+	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final int subjectId, final int numberofQuestions) {
+		final Quiz createdQuiz = dao.createQuiz(subjectId, numberofQuestions);
 		final ResponseStructure<Quiz> structure = new ResponseStructure<Quiz>();
 		HttpStatus httpStatus = null;
 		String message = null;
 		if (createdQuiz != null) {
-			message = "Created";
+			message = "Created"; 
 			httpStatus = HttpStatus.CREATED;
 		} else {
 			message = "Unable to create Quiz";

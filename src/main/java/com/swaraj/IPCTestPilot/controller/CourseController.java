@@ -23,12 +23,12 @@ public class CourseController {
 	
 	@Autowired
 	CourseService service;
-	
+	 
 	@PostMapping
 	public ResponseEntity<ResponseStructure<Course>> saveCourse(@RequestParam String courseName,@RequestBody List<Integer> subjectids){
 		return service.saveCourse(courseName, subjectids);
 	}
-	
+	 
 	@GetMapping("getall")
 	public ResponseEntity<ResponseStructure<List<Course>>> getAllCourses(){
 		return service.getAllCourses();

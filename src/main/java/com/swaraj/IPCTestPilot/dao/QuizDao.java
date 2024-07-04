@@ -80,10 +80,10 @@ public class QuizDao {
 	/**
 	 * @param subject
 	 * @param numofQuestions
-	 * @return
+	 * @return 
 	 */
-	public Quiz createQuiz(int subject, int numofQuestions) {
-		List<Integer> l = questionDao.getQuestions(subject, numofQuestions);
+	public Quiz createQuiz(int subjectId, int numofQuestions) {
+		List<Integer> l = questionDao.getQuestions(subjectId, numofQuestions);
 		Quiz quiz = new Quiz();
 		quiz.setQuestionIds(l);
 		return quizRepo.save(quiz);
