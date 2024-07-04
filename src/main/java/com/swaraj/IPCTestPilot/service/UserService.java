@@ -35,7 +35,7 @@ public class UserService {
             structure.setMessage("User saved successfully");
             structure.setStatus(HttpStatus.CREATED.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.CREATED);
+            return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.CREATED);
         }
         return null;
     }
@@ -51,13 +51,14 @@ public class UserService {
             structure.setMessage("User found");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
         return null;
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findAllUser() {
         List<User> users = dao.findAllUser();
+        if (users != null) {
         List<UserDto> userDtos = users.stream().map(user -> {
             UserDto udto = new UserDto();
             mapper.map(user, udto);
@@ -69,7 +70,9 @@ public class UserService {
         structure.setMessage("All users retrieved");
         structure.setStatus(HttpStatus.OK.value());
 
-        return new ResponseEntity<>(structure, HttpStatus.OK);
+        return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
+        }
+        return null;
     }
 
     public ResponseEntity<ResponseStructure<UserDto>> deleteUser(int userId) {
@@ -83,7 +86,7 @@ public class UserService {
             structure.setMessage("User deleted successfully");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
         return null;
     }
@@ -99,23 +102,28 @@ public class UserService {
             structure.setMessage("User updated successfully");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
         return null;
     }
 
     public ResponseEntity<ResponseStructure<Boolean>> verifyUser(String email, String password) {
         boolean isVerified = dao.verifyUser(email, password);
+        if(isVerified) {
         ResponseStructure<Boolean> structure = new ResponseStructure<>();
         structure.setData(isVerified);
-        structure.setMessage(isVerified ? "User verified" : "Invalid credentials");
-        structure.setStatus(isVerified ? HttpStatus.OK.value() : HttpStatus.UNAUTHORIZED.value());
+        structure.setMessage("User verified");
+        structure.setStatus(HttpStatus.OK.value());
 
-        return new ResponseEntity<>(structure, isVerified ? HttpStatus.OK : HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<ResponseStructure<Boolean>>(structure, HttpStatus.OK);
+    }
+		return null;
+        
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findUsersByRole(int role) {
         List<User> users = dao.findUsersByRole(role);
+        if (users != null) {
         List<UserDto> userDtos = users.stream().map(user -> {
             UserDto udto = new UserDto();
             mapper.map(user, udto);
@@ -127,11 +135,14 @@ public class UserService {
         structure.setMessage("Users retrieved by role");
         structure.setStatus(HttpStatus.OK.value());
 
-        return new ResponseEntity<>(structure, HttpStatus.OK);
+        return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
+        }
+		return null;
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findUsersBySubjectId(int subjectId) {
         List<User> users = dao.findUsersBySubjectId(subjectId);
+        if (users != null) {
         List<UserDto> userDtos = users.stream().map(user -> {
             UserDto udto = new UserDto();
             mapper.map(user, udto);
@@ -143,11 +154,8 @@ public class UserService {
         structure.setMessage("Users retrieved by subject ID");
         structure.setStatus(HttpStatus.OK.value());
 
-        return new ResponseEntity<>(structure, HttpStatus.OK);
+        return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
+        }
+		return null;
     }
-
-	
-	
-	
-
 }
