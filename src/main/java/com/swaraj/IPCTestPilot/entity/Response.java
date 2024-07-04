@@ -24,4 +24,5 @@ public class Response {
 	int mark;
 	@ElementCollection
 	List<String> answers;
+
 }

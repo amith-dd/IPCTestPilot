@@ -40,7 +40,7 @@ public class QuestionService {
             structure.setMessage("Question saved");
             structure.setStatus(HttpStatus.CREATED.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.CREATED);
+            return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.CREATED);
         }
         return null;
 //        throw new QuestionNotFoundException("Failed to save question");
@@ -62,7 +62,7 @@ public class QuestionService {
             structure.setMessage("Question found");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
         return null;
 //        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
@@ -84,7 +84,7 @@ public class QuestionService {
             structure.setMessage("Question deleted");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
         return null;
 //        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
@@ -107,7 +107,7 @@ public class QuestionService {
             structure.setMessage("Question updated");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
         return null;
 //        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
@@ -128,7 +128,7 @@ public class QuestionService {
             structure.setMessage("Questions retrieved");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<List<Integer>>>(structure, HttpStatus.OK);
         }
         return null;
 //        throw new QuestionNotFoundException("No questions found for subject ID: " + subjectId);
@@ -154,7 +154,7 @@ public class QuestionService {
             structure.setMessage("Questions retrieved");
             structure.setStatus(HttpStatus.OK.value());
 
-            return new ResponseEntity<>(structure, HttpStatus.OK);
+            return new ResponseEntity<ResponseStructure<List<QuestionDto>>>(structure, HttpStatus.OK);
         }
         return null;
 //        throw new QuestionNotFoundException("Questions not found for the provided IDs");
