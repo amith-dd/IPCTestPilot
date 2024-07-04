@@ -54,7 +54,7 @@ public class ResultService {
 	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if found
 	 *         successfully or else null
 	 */
-	public ResponseEntity<ResponseStructure<Result>> findResult(final int resultId) {
+	public ResponseEntity<ResponseStructure<Result>> findResult(int resultId) {
 		final Result findResult = dao.findResult(resultId);
 		final ResponseStructure<Result> structure = new ResponseStructure<Result>();
 		HttpStatus httpStatus = null;
