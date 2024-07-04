@@ -1,38 +1,42 @@
 package com.swaraj.IPCTestPilot.service;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
-<<<<<<< HEAD
-import com.swaraj.IPCTestPilot.dto.Question;
-=======
+import com.swaraj.IPCTestPilot.dto.QuestionDto;
+import com.swaraj.IPCTestPilot.dto.UserDto;
 import com.swaraj.IPCTestPilot.entity.Course;
 import com.swaraj.IPCTestPilot.entity.Question;
->>>>>>> 03026fed75378094f4a1c201109b2d2a8c5855fd
+
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
 public class QuestionService {
 
-	@Autowired
-	 QuestionDao dao;
-	
+    @Autowired
+    QuestionDao dao;
+
+    @Autowired
+    ModelMapper mapper;
 
     /**
-     * Saves a question and returns a response entity with the saved question.
+     * Saves a question and returns a response entity with the saved question DTO.
      *
      * @param question The question to save.
-     * @return A response entity with the saved question.
+     * @return A response entity with the saved question DTO.
      */
-    public ResponseEntity<ResponseStructure<Question>> saveQuestion(Question question) {
+    public ResponseEntity<ResponseStructure<QuestionDto>> saveQuestion(Question question) {
         Question savedQuestion = dao.saveQuestion(question);
         if (savedQuestion != null) {
-            ResponseStructure<Question> structure = new ResponseStructure<>();
-            structure.setData(savedQuestion);
+            QuestionDto qdto = new QuestionDto();
+            mapper.map(savedQuestion, qdto);
+            ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
+            structure.setData(qdto);
             structure.setMessage("Question saved");
             structure.setStatus(HttpStatus.CREATED.value());
 
@@ -43,37 +47,40 @@ public class QuestionService {
     }
 
     /**
-     * Finds a question by its ID and returns a response entity with the found question.
+     * Finds a question by its ID and returns a response entity with the found question DTO.
      *
      * @param questionId The ID of the question.
-     * @return A response entity with the found question.
+     * @return A response entity with the found question DTO.
      */
-    public ResponseEntity<ResponseStructure<Question>> findQuestion(int questionId) {
+    public ResponseEntity<ResponseStructure<QuestionDto>> findQuestion(int questionId) {
         Question question = dao.findQuestion(questionId);
         if (question != null) {
-            ResponseStructure<Question> structure = new ResponseStructure<>();
-            structure.setData(question);
+            QuestionDto qdto = new QuestionDto();
+            mapper.map(question, qdto);
+            ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
+            structure.setData(qdto);
             structure.setMessage("Question found");
             structure.setStatus(HttpStatus.OK.value());
 
             return new ResponseEntity<>(structure, HttpStatus.OK);
-            
         }
         return null;
 //        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
     }
 
     /**
-     * Deletes a question by its ID and returns a response entity with the deleted question.
+     * Deletes a question by its ID and returns a response entity with the deleted question DTO.
      *
      * @param questionId The ID of the question to delete.
-     * @return A response entity with the deleted question.
+     * @return A response entity with the deleted question DTO.
      */
-    public ResponseEntity<ResponseStructure<Question>> deleteQuestion(int questionId) {
+    public ResponseEntity<ResponseStructure<QuestionDto>> deleteQuestion(int questionId) {
         Question question = dao.deleteQuestion(questionId);
         if (question != null) {
-            ResponseStructure<Question> structure = new ResponseStructure<>();
-            structure.setData(question);
+            QuestionDto qdto = new QuestionDto();
+            mapper.map(question, qdto);
+            ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
+            structure.setData(qdto);
             structure.setMessage("Question deleted");
             structure.setStatus(HttpStatus.OK.value());
 
@@ -84,17 +91,19 @@ public class QuestionService {
     }
 
     /**
-     * Updates an existing question by its ID and returns a response entity with the updated question.
+     * Updates an existing question by its ID and returns a response entity with the updated question DTO.
      *
      * @param question The new question data.
      * @param questionId The ID of the question to update.
-     * @return A response entity with the updated question.
+     * @return A response entity with the updated question DTO.
      */
-    public ResponseEntity<ResponseStructure<Question>> updateQuestion(Question question, int questionId) {
+    public ResponseEntity<ResponseStructure<QuestionDto>> updateQuestion(Question question, int questionId) {
         Question updatedQuestion = dao.updateQuestion(question, questionId);
         if (updatedQuestion != null) {
-            ResponseStructure<Question> structure = new ResponseStructure<>();
-            structure.setData(updatedQuestion);
+            QuestionDto qdto = new QuestionDto();
+            mapper.map(updatedQuestion, qdto);
+            ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
+            structure.setData(qdto);
             structure.setMessage("Question updated");
             structure.setStatus(HttpStatus.OK.value());
 
@@ -126,16 +135,22 @@ public class QuestionService {
     }
 
     /**
-     * Retrieves a list of questions based on their IDs and returns a response entity with the list of questions.
+     * Retrieves a list of questions based on their IDs and returns a response entity with the list of question DTOs.
      *
      * @param questionIds The list of question IDs.
-     * @return A response entity with the list of questions.
+     * @return A response entity with the list of question DTOs.
      */
-    public ResponseEntity<ResponseStructure<List<Question>>> getQuestionsByQuestionId(List<Integer> questionIds) {
+    public ResponseEntity<ResponseStructure<List<QuestionDto>>> getQuestionsByQuestionId(List<Integer> questionIds) {
         List<Question> questions = dao.getQuestionsByQuestionId(questionIds);
         if (questions != null && !questions.isEmpty()) {
-            ResponseStructure<List<Question>> structure = new ResponseStructure<>();
-            structure.setData(questions);
+            List<QuestionDto> questionDtos = questions.stream().map(q -> {
+                QuestionDto qdto = new QuestionDto();
+                mapper.map(q, qdto);
+                return qdto;
+            }).toList();
+
+            ResponseStructure<List<QuestionDto>> structure = new ResponseStructure<>();
+            structure.setData(questionDtos);
             structure.setMessage("Questions retrieved");
             structure.setStatus(HttpStatus.OK.value());
 
@@ -145,5 +160,9 @@ public class QuestionService {
 //        throw new QuestionNotFoundException("Questions not found for the provided IDs");
     }
 
-}  
-    
+}
+
+
+
+
+

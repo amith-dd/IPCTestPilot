@@ -7,15 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
-import com.swaraj.IPCTestPilot.dto.Question;
 
-;
 
-;
-=======
+
+
+
+
 import com.swaraj.IPCTestPilot.entity.Question;
->>>>>>> 03026fed75378094f4a1c201109b2d2a8c5855fd
+
 @Repository
 
 public interface QuestionRepo extends JpaRepository<Question, Integer> {

@@ -5,11 +5,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-<<<<<<< HEAD
-import com.swaraj.IPCTestPilot.dto.User;
-=======
+
+
 import com.swaraj.IPCTestPilot.entity.User;
->>>>>>> 03026fed75378094f4a1c201109b2d2a8c5855fd
+
 
 
 ;
