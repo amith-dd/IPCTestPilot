@@ -1,5 +1,4 @@
 package com.swaraj.IPCTestPilot.dao;
-
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +9,8 @@ import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 
 @Repository
 public class QuestionDao {
-
-
-
     @Autowired
     private QuestionRepo repo;
-
-
-
     public Question saveQuestion(Question question) {
         return repo.save(question);
     }
@@ -60,6 +53,7 @@ public class QuestionDao {
         return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
 
     }
+ 
 
     
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
