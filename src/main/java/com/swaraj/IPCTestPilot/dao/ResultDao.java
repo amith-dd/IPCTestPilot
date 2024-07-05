@@ -1,7 +1,6 @@
 package com.swaraj.IPCTestPilot.dao;
 
 import java.util.List;
-
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,23 +48,11 @@ public class ResultDao {
 	}
 
 	/**
-	 * @param resultId
-	 * @return list of result
-	 */
-	public List<Result> findAllById(int resultId) {
-		List<Result> list = repo.findAllById(resultId);
-		if (list != null) {
-			return list;
-		}
-		return null;
-	}
-
-	/**
 	 * @param quizId
 	 * @return list of Result's
 	 */
 	public List<Result> findResultByQuizId(int quizId) {
-		List<Result> list = repo.findResultByQuizId(quizId);
+		List<Result> list = repo.findAllById(quizId);
 		if (list != null) {
 			return list;
 		}
@@ -77,7 +64,11 @@ public class ResultDao {
 	 * @return list of Result's
 	 */
 	public List<Result> findResultByStudentId(int studentId) {
-		return repo.findResultByStudentId(studentId);
+		List<Result> list = repo.findAllById(studentId);
+		if (list != null) {
+			return list;
+		}
+		return null;
 	}
 
 }

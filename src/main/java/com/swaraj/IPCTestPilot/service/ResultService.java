@@ -1,7 +1,6 @@
 package com.swaraj.IPCTestPilot.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,7 @@ public class ResultService {
 	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if found
 	 *         successfully or else null
 	 */
-	public ResponseEntity<ResponseStructure<Result>> findResult(final int resultId) {
+	public ResponseEntity<ResponseStructure<Result>> findResult(int resultId) {
 		final Result findResult = dao.findResult(resultId);
 		final ResponseStructure<Result> structure = new ResponseStructure<Result>();
 		HttpStatus httpStatus = null;
@@ -94,32 +93,6 @@ public class ResultService {
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
 		structure.setData(findAllResult);
-		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the code
-		return new ResponseEntity<ResponseStructure<List<Result>>>(structure, httpStatus);
-	}
-
-	/**
-	 * This method uses {@link ResultDao} to find list of the {@link Result} entity
-	 * from database
-	 * 
-	 * @param resultId
-	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if found all
-	 *         ResultById successfully or else null
-	 */
-	public ResponseEntity<ResponseStructure<List<Result>>> findAllById(int resultId) {
-		final List<Result> findResult = dao.findAllById(resultId);
-		final ResponseStructure<List<Result>> structure = new ResponseStructure<List<Result>>();
-		HttpStatus httpStatus = null;
-		String message = null;
-		if (findResult != null) {
-			message = "All Resultallbyid found";
-			httpStatus = HttpStatus.ACCEPTED;
-		} else {
-			message = "Unable to find Resultallbyid";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-		}
-		structure.setData(findResult);
 		structure.setMessage(message);
 		structure.setStatus(httpStatus.value());// gives the code
 		return new ResponseEntity<ResponseStructure<List<Result>>>(structure, httpStatus);
