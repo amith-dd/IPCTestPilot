@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.UserDao;
 import com.swaraj.IPCTestPilot.dto.UserDto;
 import com.swaraj.IPCTestPilot.entity.User;
+import com.swaraj.IPCTestPilot.exception.UserNotFoundException;
+import com.swaraj.IPCTestPilot.exception.UserSaveFailedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
@@ -37,7 +39,7 @@ public class UserService {
 
             return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.CREATED);
         }
-        return null;
+        throw new UserSaveFailedException("Failed to save user");
     }
 
     public ResponseEntity<ResponseStructure<UserDto>> findUser(int userId) {
@@ -53,7 +55,7 @@ public class UserService {
 
             return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
-        return null;
+        throw new UserNotFoundException("User not found with ID: " + userId);
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findAllUser() {
@@ -72,7 +74,7 @@ public class UserService {
 
         return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
         }
-        return null;
+        throw new UserNotFoundException("No users found");
     }
 
     public ResponseEntity<ResponseStructure<UserDto>> deleteUser(int userId) {
@@ -88,7 +90,7 @@ public class UserService {
 
             return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
-        return null;
+        throw new UserNotFoundException("User not found with ID: " + userId);
     }
 
     public ResponseEntity<ResponseStructure<UserDto>> updateUser(User user, int userId) {
@@ -104,7 +106,7 @@ public class UserService {
 
             return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
-        return null;
+        throw new UserNotFoundException("User not found with ID: " + userId);
     }
 
     public ResponseEntity<ResponseStructure<Boolean>> verifyUser(String email, String password) {
@@ -117,7 +119,7 @@ public class UserService {
 
         return new ResponseEntity<ResponseStructure<Boolean>>(structure, HttpStatus.OK);
     }
-		return null;
+        throw new UserNotFoundException("User not found with email: " + email);
         
     }
 
@@ -137,7 +139,7 @@ public class UserService {
 
         return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
         }
-		return null;
+        throw new UserNotFoundException("No users found for role: " + role);
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findUsersBySubjectId(int subjectId) {
@@ -156,6 +158,6 @@ public class UserService {
 
         return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
         }
-		return null;
+        throw new UserNotFoundException("No users found for subject ID: " + subjectId);
     }
 }
