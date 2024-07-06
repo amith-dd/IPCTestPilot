@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
 import com.swaraj.IPCTestPilot.dto.QuestionDto;
-import com.swaraj.IPCTestPilot.dto.UserDto;
-import com.swaraj.IPCTestPilot.entity.Course;
 import com.swaraj.IPCTestPilot.entity.Question;
-
+import com.swaraj.IPCTestPilot.exception.QuestionNotFoundException;
+import com.swaraj.IPCTestPilot.exception.QuestionSaveFailedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
@@ -42,8 +41,8 @@ public class QuestionService {
 
             return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.CREATED);
         }
-        return null;
-//        throw new QuestionNotFoundException("Failed to save question");
+       
+        throw new QuestionSaveFailedException("Failed to save question");
     }
 
     /**
@@ -64,8 +63,8 @@ public class QuestionService {
 
             return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
-        return null;
-//        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
+       
+        throw  new QuestionNotFoundException("Question not found with ID: " + questionId);
     }
 
     /**
@@ -86,8 +85,7 @@ public class QuestionService {
 
             return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
-        return null;
-//        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
+               throw new QuestionNotFoundException("Question not found with ID: " + questionId);
     }
 
     /**
@@ -109,8 +107,8 @@ public class QuestionService {
 
             return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
-        return null;
-//        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
+       
+        throw new QuestionNotFoundException("Question not found with ID: " + questionId);
     }
 
     /**
@@ -130,8 +128,8 @@ public class QuestionService {
 
             return new ResponseEntity<ResponseStructure<List<Integer>>>(structure, HttpStatus.OK);
         }
-        return null;
-//        throw new QuestionNotFoundException("No questions found for subject ID: " + subjectId);
+      
+       throw new QuestionNotFoundException("No questions found for subject ID: " + subjectId);
     }
 
     /**
@@ -156,8 +154,8 @@ public class QuestionService {
 
             return new ResponseEntity<ResponseStructure<List<QuestionDto>>>(structure, HttpStatus.OK);
         }
-        return null;
-//        throw new QuestionNotFoundException("Questions not found for the provided IDs");
+        
+        throw new QuestionNotFoundException("Questions not found for the provided IDs");
     }
 
 }
