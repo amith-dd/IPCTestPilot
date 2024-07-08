@@ -37,6 +37,4 @@ public class CourseController {
 	public ResponseEntity<ResponseStructure<List<String>>> getAllSubjectByCourseId(@PathVariable int courseId){
 		return service.getAllSubjectByCourseId(courseId);
 	}
-		
-	
 }
