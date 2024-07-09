@@ -1,11 +1,12 @@
 package com.swaraj.IPCTestPilot.dto;
 
+import lombok.Data;
 import lombok.Setter;
-@Setter
+@Data
 public class QuestionDto {
 
 	private int subjectId;
-	private String question;
+	private String questionContent;
 	private String optionA;
 	private String optionB;
 	private String optionC;

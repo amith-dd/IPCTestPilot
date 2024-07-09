@@ -1,12 +1,10 @@
 package com.swaraj.IPCTestPilot.service;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
 import com.swaraj.IPCTestPilot.dto.QuestionDto;
 import com.swaraj.IPCTestPilot.entity.Question;
@@ -19,7 +17,7 @@ public class QuestionService {
 
     @Autowired
     QuestionDao dao;
-
+    
     @Autowired
     ModelMapper mapper;
 
@@ -110,7 +108,6 @@ public class QuestionService {
        
         throw new QuestionNotFoundException("Question not found with ID: " + questionId);
     }
-
     /**
      * Retrieves a list of question IDs based on the subject ID and limits the number of results.
      *
