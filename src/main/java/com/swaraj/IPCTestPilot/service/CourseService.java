@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.CourseDao;
 import com.swaraj.IPCTestPilot.entity.Course;
 import com.swaraj.IPCTestPilot.entity.Subject;
+import com.swaraj.IPCTestPilot.exception.CourseNotFoundException;
+import com.swaraj.IPCTestPilot.exception.CourseNotSavedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
@@ -36,7 +38,7 @@ public class CourseService {
 
 			return new ResponseEntity<ResponseStructure<Course>>(structure, HttpStatus.CREATED);
 		}
-		return null;
+		throw new CourseNotSavedException("course save failed");
 	}
 	
 	
@@ -50,7 +52,7 @@ public class CourseService {
 			structure.setStatus(HttpStatus.FOUND.value());
 			return new ResponseEntity<ResponseStructure<List<Course>>>(structure,HttpStatus.FOUND);
 		}
-		return null; // exception for no cources found
+		throw new CourseNotFoundException("course not found with the given ID");
 	}
 	
 	/*
@@ -71,7 +73,7 @@ public class CourseService {
 			structure.setStatus(HttpStatus.FOUND.value());
 			return new ResponseEntity<ResponseStructure<List<String>>>(structure,HttpStatus.FOUND);
 		}
-		return null; // exception for course not found for given id
+		throw new CourseNotFoundException("course not found with the given ID");
 	}
 	
 
