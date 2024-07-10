@@ -18,8 +18,7 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int questionId;
 	private int subjectId;
-	 @JsonProperty("questionContent")
-	private String questionContent;
+	private String question;
 	private String optionA;
 	private String optionB;
 	private String optionC;

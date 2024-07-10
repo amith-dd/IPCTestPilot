@@ -4,9 +4,10 @@ import lombok.Data;
 import lombok.Setter;
 @Data
 public class QuestionDto {
-
+    
+	private int questionId;
 	private int subjectId;
-	private String questionContent;
+	private String question;
 	private String optionA;
 	private String optionB;
 	private String optionC;

@@ -12,7 +12,8 @@ import com.swaraj.IPCTestPilot.service.UserService;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
+
 public class UserController {
 
     @Autowired
@@ -22,6 +23,7 @@ public class UserController {
     public ResponseEntity<ResponseStructure<UserDto>> signupUser(@RequestBody User user) {
         return userService.singupUser(user);
     }
+
 
     @GetMapping("/{userId}")
     public ResponseEntity<ResponseStructure<UserDto>> findUser(@PathVariable int userId) {
