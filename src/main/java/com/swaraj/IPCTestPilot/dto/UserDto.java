@@ -2,11 +2,11 @@ package com.swaraj.IPCTestPilot.dto;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 
-@Setter
+
+@Data
 public class UserDto {
 	
 	private int userId;

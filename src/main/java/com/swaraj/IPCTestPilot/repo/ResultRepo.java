@@ -13,13 +13,12 @@ import com.swaraj.IPCTestPilot.entity.Result;
 
 @Repository
 public interface ResultRepo extends JpaRepository<Result, Integer> {
-
-//	List<Result> findAllById(int id);
+//	List<Result> findAllById(int id)
+	List<Result> findByresultId(int id);
 
 //	@Query("SELECT q FROM Result q WHERE q.quizId = ?1")
 //	List<Result> findResultByQuizId(int quizId);
 
-//	@Query("SELECT s FROM Result s WHERE s.studentId = ?1")
-//	List<Result> findResultByStudentId(int studentId);
+	List<Result> findBystudentId(int studentId);
 
 }

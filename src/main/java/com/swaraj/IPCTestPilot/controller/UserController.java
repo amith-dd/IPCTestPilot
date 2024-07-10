@@ -23,7 +23,7 @@ public class UserController {
         return userService.singupUser(user);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{userId}")
     public ResponseEntity<ResponseStructure<UserDto>> findUser(@PathVariable int userId) {
         return userService.findUser(userId);
     }
@@ -38,8 +38,8 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<ResponseStructure<UserDto>> updateUser(@RequestBody User user, @PathVariable int userId) {
+    @PutMapping
+    public ResponseEntity<ResponseStructure<UserDto>> updateUser(@RequestBody User user, @RequestParam int userId) {
         return userService.updateUser(user, userId);
     }
 

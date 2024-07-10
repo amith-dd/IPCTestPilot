@@ -53,5 +53,21 @@ public class StudentDao {
         }
         return null;
     }
+    
+    public Student findByEmail(String email) {
+    	Student stu = repo.findBystudentEmail(email);
+    	if(stu!=null) {
+    		return stu;
+    	}
+    	return null;
+    }
+    
+    public List<Student> findStudentsByCourseId(int coiurseId){
+    	List<Student> students = repo.findBystudentCourseId(coiurseId);
+    	if(!students.isEmpty()) {
+    		return students;
+    	}
+    	return null;
+    }
 	
 }

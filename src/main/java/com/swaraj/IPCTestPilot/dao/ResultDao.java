@@ -52,7 +52,7 @@ public class ResultDao {
 	 * @return list of Result's
 	 */
 	public List<Result> findResultByQuizId(int quizId) {
-		List<Result> list = repo.findAllById(quizId);
+		List<Result> list = repo.findByresultId(quizId);
 		if (list != null) {
 			return list;
 		}
@@ -64,7 +64,7 @@ public class ResultDao {
 	 * @return list of Result's
 	 */
 	public List<Result> findResultByStudentId(int studentId) {
-		List<Result> list = repo.findAllById(studentId);
+		List<Result> list = repo.findBystudentId(studentId);
 		if (list != null) {
 			return list;
 		}
