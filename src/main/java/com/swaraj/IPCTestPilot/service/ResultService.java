@@ -39,11 +39,12 @@ public class ResultService {
 		} else {
 			message = "Unable to save Result";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-		}
+		} 
 		structure.setData(savedResult);
 		structure.setMessage(message);
 		structure.setStatus(httpStatus.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Result>>(structure, httpStatus);
+		
 	}
 
 	/**

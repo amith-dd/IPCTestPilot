@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.QuizDao;
 import com.swaraj.IPCTestPilot.entity.Quiz;
+import com.swaraj.IPCTestPilot.exception.CourseNotFoundException;
+import com.swaraj.IPCTestPilot.exception.CourseNotSavedException;
+import com.swaraj.IPCTestPilot.exception.QuizNotFoundException;
+import com.swaraj.IPCTestPilot.exception.QuizNotSavedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 /**
@@ -38,13 +42,13 @@ public class QuizService {
 			message = "Quiz saved";
 			httpStatus = HttpStatus.CREATED;
 		} else {
-			message = "Unable to save Quiz";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			 throw new QuizNotSavedException("quiz save failed");
 		}
 		structure.setData(savedQuiz);
 		structure.setMessage(message);
 		structure.setStatus(httpStatus.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Quiz>>(structure, httpStatus);
+		 
 	}
 
 	/**
@@ -64,8 +68,7 @@ public class QuizService {
 			message = "Quiz found";
 			httpStatus = HttpStatus.OK;
 		} else {
-			message = "Not Found";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
 		structure.setData(findQuiz);
 		structure.setMessage(message);
@@ -90,8 +93,7 @@ public class QuizService {
 			message = "Quiz deleted";
 			httpStatus = HttpStatus.ACCEPTED;
 		} else {
-			message = "Unable to delete Quiz";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
 		structure.setData(deleteQuiz);
 		structure.setMessage(message);
@@ -117,8 +119,7 @@ public class QuizService {
 			message = "Quiz updated";
 			httpStatus = HttpStatus.OK;
 		} else {
-			message = "Unable to update Quiz";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
 		structure.setData(updateQuiz);
 		structure.setMessage(message);
@@ -142,8 +143,7 @@ public class QuizService {
 			message = "All quiz found";
 			httpStatus = HttpStatus.ACCEPTED;
 		} else {
-			message = "Unable to find AllQuiz";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
 		structure.setData(findAllquiz);
 		structure.setMessage(message);
@@ -170,6 +170,7 @@ public class QuizService {
 		} else {
 			message = "Unable to create Quiz";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			
 		}
 		structure.setData(createdQuiz);
 		structure.setMessage(message);
