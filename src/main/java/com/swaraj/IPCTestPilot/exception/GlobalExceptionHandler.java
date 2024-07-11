@@ -18,9 +18,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleQuestionNotFoundException(QuestionNotFoundException ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
-<<<<<<< HEAD
-	
-=======
+
 
 	@ExceptionHandler(UserSaveFailedException.class)
     public ResponseEntity<String> handleUserSaveFailedException(UserSaveFailedException ex) {
@@ -31,7 +29,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }	
->>>>>>> e519ab1d8fd2b2e4c0288dd4098d58fd1571d67c
+
 
 	@ExceptionHandler(CourseNotFoundException.class)
     public ResponseEntity<String> handleCourseNotFoundException(CourseNotFoundException ex) {
@@ -69,20 +67,12 @@ public class GlobalExceptionHandler {
     }
 	
 	
-<<<<<<< HEAD
 
-	@ExceptionHandler(UserSaveFailedException.class)
-    public ResponseEntity<String> handleUserSaveFailedException(UserSaveFailedException ex) {
-        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    } 
+
 	
-	@ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
-        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }	
-=======
+
 	
->>>>>>> e519ab1d8fd2b2e4c0288dd4098d58fd1571d67c
+
 
 
 }
