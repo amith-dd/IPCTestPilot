@@ -12,7 +12,7 @@ public class UserDto {
 	private int userId;
 	private String userName;
 	private String userEmail;
-	private List<Integer> userCourseIds;
+	private List<Integer> userSubjectIds;
 	
 	
 	
