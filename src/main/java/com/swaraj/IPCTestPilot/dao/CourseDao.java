@@ -3,13 +3,22 @@ package com.swaraj.IPCTestPilot.dao;
 import java.util.List;
 import java.util.Optional;
 
+<<<<<<< HEAD
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> 8cb4867ef9cb85fb9ceb80aa42344626f72d37b4
 import org.springframework.stereotype.Repository;
 
 import com.swaraj.IPCTestPilot.entity.Course;
 import com.swaraj.IPCTestPilot.repo.CourseRepo;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8cb4867ef9cb85fb9ceb80aa42344626f72d37b4
 @Repository
 public class CourseDao {
 	
+	@Autowired
 	CourseRepo repo;
 	
 	public Course saveCourse(Course course) {
