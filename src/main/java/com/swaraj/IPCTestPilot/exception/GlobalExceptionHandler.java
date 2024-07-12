@@ -18,7 +18,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleQuestionNotFoundException(QuestionNotFoundException ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+	@ExceptionHandler(UserSaveFailedException.class)
+    public ResponseEntity<String> handleUserSaveFailedException(UserSaveFailedException ex) {
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    } 
 	
+	@ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
+        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }	
+
 	@ExceptionHandler(CourseNotFoundException.class)
     public ResponseEntity<String> handleCourseNotFoundException(CourseNotFoundException ex) {
         return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
@@ -63,6 +73,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleResultNotSavedException(ResultNotSavedException ex) {
         return new ResponseEntity<String>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
     }
-	
+
+	@ExceptionHandler(QuizNotFoundException.class)
+    public ResponseEntity<String> handleQuizNotFoundException(QuizNotFoundException ex) {
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
+    }
+	 
+	@ExceptionHandler(QuizNotSavedException.class)
+    public ResponseEntity<String> handleQuizNotSavedException(QuizNotSavedException ex) {
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 
 }
