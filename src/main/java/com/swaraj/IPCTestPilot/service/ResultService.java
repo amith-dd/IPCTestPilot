@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.ResultDao;
 import com.swaraj.IPCTestPilot.entity.Result;
+import com.swaraj.IPCTestPilot.exception.ResultNotFoundException;
+import com.swaraj.IPCTestPilot.exception.ResultNotSavedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 /**
@@ -38,7 +40,7 @@ public class ResultService {
 			httpStatus = HttpStatus.CREATED;
 		} else {
 			message = "Unable to save Result";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new ResultNotSavedException(message);
 		}
 		structure.setData(savedResult);
 		structure.setMessage(message);
@@ -64,7 +66,7 @@ public class ResultService {
 			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Result Not Found";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findResult);
 		structure.setMessage(message);
@@ -90,7 +92,7 @@ public class ResultService {
 			httpStatus = HttpStatus.ACCEPTED;
 		} else {
 			message = "Unable to find AllResult";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findAllResult);
 		structure.setMessage(message);
@@ -116,7 +118,7 @@ public class ResultService {
 			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to find QuizId's";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findQuiz);
 		structure.setMessage(message);
@@ -142,7 +144,7 @@ public class ResultService {
 			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to find StudentId's";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findStudent);
 		structure.setMessage(message);
