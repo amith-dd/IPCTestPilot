@@ -66,13 +66,31 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
     }
 	
+	@ExceptionHandler(ResultNotFoundException.class)
+    public ResponseEntity<String> handleResultNotFoundException(ResultNotFoundException ex) {
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
+    }
 	
 
 
-	
 
 	
 
+	@ExceptionHandler(ResultNotSavedException.class)
+    public ResponseEntity<String> handleResultNotSavedException(ResultNotSavedException ex) {
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+	@ExceptionHandler(QuizNotFoundException.class)
+    public ResponseEntity<String> handleQuizNotFoundException(QuizNotFoundException ex) {
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
+    }
+	 
+	@ExceptionHandler(QuizNotSavedException.class)
+    public ResponseEntity<String> handleQuizNotSavedException(QuizNotSavedException ex) {
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 
 
 }

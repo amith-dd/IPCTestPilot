@@ -16,6 +16,8 @@ import com.swaraj.IPCTestPilot.exception.UserNotFoundException;
 import com.swaraj.IPCTestPilot.exception.UserSaveFailedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -76,7 +78,7 @@ public class UserService {
         }
         throw new UserNotFoundException("No users found");
     }
-
+    @Transactional
     public ResponseEntity<ResponseStructure<UserDto>> deleteUser(int userId) {
         User user = dao.deleteUser(userId);
         if (user != null) {
@@ -119,13 +121,16 @@ public class UserService {
 
         return new ResponseEntity<ResponseStructure<Boolean>>(structure, HttpStatus.OK);
     }
-        throw new UserNotFoundException("User not found with email: " + email);
+        throw new UserNotFoundException("Invalid credentials");
         
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findUsersByRole(int role) {
         List<User> users = dao.findUsersByRole(role);
-        if (users != null) {
+        if (users == null || users.isEmpty()) {
+            throw new UserNotFoundException("No users found for role: " + role);
+        }
+        else{
         List<UserDto> userDtos = users.stream().map(user -> {
             UserDto udto = new UserDto();
             mapper.map(user, udto);
@@ -139,12 +144,12 @@ public class UserService {
 
         return new ResponseEntity<ResponseStructure<List<UserDto>>>(structure, HttpStatus.OK);
         }
-        throw new UserNotFoundException("No users found for role: " + role);
+     
     }
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findUsersBySubjectId(int subjectId) {
         List<User> users = dao.findUsersBySubjectId(subjectId);
-        if (users != null) {
+        if (users != null && !users.isEmpty()) {
         List<UserDto> userDtos = users.stream().map(user -> {
             UserDto udto = new UserDto();
             mapper.map(user, udto);
