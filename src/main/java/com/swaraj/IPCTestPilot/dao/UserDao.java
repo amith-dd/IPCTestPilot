@@ -84,6 +84,9 @@ public class UserDao {
                     .collect(Collectors.toList());
     }
 
-
+    public boolean validateUserSubjectIds(List<Integer> userSubjectIds, int minSubjectId, int maxSubjectId) {
+        return userSubjectIds.stream()
+                             .allMatch(subjectId -> subjectId >= minSubjectId && subjectId <= maxSubjectId);
+    }
 
 }
