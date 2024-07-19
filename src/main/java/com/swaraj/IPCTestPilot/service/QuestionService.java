@@ -32,8 +32,9 @@ public class QuestionService {
     public ResponseEntity<ResponseStructure<QuestionDto>> saveQuestion(Question question) {
         Question savedQuestion = dao.saveQuestion(question);
         if (savedQuestion != null) {
-            QuestionDto qdto = new QuestionDto();
-            mapper.map(savedQuestion, qdto);
+          
+            QuestionDto qdto = mapper.map(savedQuestion, QuestionDto.class);
+            
             ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
             structure.setData(qdto);
             structure.setMessage("Question saved");
