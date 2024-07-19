@@ -64,7 +64,7 @@ public class QuizDao {
 	public Quiz updateQuiz(Quiz quiz, int quizId) {
 		Quiz dbquiz = findQuiz(quizId);
 		if (dbquiz != null) {
-			quiz.setQuizId(quizId);
+//			quiz.setQuizId(quizId);
 			return quizRepo.save(quiz);
 		}
 		return null;
