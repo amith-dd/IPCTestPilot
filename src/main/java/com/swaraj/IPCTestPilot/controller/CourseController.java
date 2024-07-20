@@ -17,7 +17,7 @@ import com.swaraj.IPCTestPilot.service.CourseService;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @RestController
-@RequestMapping("course")
+@RequestMapping("/course")
 public class CourseController {
 	
 	@Autowired
@@ -33,7 +33,7 @@ public class CourseController {
 		return service.getAllCourses();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{courseId}")
 	public ResponseEntity<ResponseStructure<List<String>>> getAllSubjectByCourseId(@PathVariable int courseId){
 		return service.getAllSubjectByCourseId(courseId);
 	}

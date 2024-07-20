@@ -24,7 +24,6 @@ import com.swaraj.IPCTestPilot.util.ResponseStructure;
 public class QuestionController {
 	
 	
-	
 	@Autowired
     private QuestionService questionService;
 
@@ -49,7 +48,7 @@ public class QuestionController {
     }
 
     @GetMapping("/subject/{subjectId}")
-    public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(@PathVariable int subjectId, @RequestParam int numberOfQuestions) {
+    public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(@RequestParam int subjectId, @RequestParam int numberOfQuestions) {
         return questionService.getQuestions(subjectId, numberOfQuestions);
     }
 
