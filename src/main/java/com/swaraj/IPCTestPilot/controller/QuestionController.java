@@ -47,7 +47,7 @@ public class QuestionController {
         return questionService.updateQuestion(question, id);
     }
 
-    @GetMapping("/subject/{subjectId}")
+    @GetMapping
     public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(@RequestParam int subjectId, @RequestParam int numberOfQuestions) {
         return questionService.getQuestions(subjectId, numberOfQuestions);
     }

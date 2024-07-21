@@ -53,12 +53,12 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(NoStudentsFoundForGivenCourseIdException.class)
     public ResponseEntity<String> handleNoStudentsFoundForGivenCourseIdException(NoStudentsFoundForGivenCourseIdException ex) {
-        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 	
 	@ExceptionHandler(StudentNotFoundWithGivenIdException.class)
     public ResponseEntity<String> handleStudentNotFoundWithGivenIdException(StudentNotFoundWithGivenIdException ex) {
-        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NO_CONTENT);
+        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 	
 	@ExceptionHandler(StudentNotSavedException.class)
