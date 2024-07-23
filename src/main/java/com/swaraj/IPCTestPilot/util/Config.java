@@ -25,11 +25,11 @@ public class Config {
 			
 		Server server1 = new Server();
 		server1.setUrl("http://localhost:8080/");
-		server1.setDescription("Server for Testing");
+		server1.setDescription("Server for local Testing");
 		
 		Server server2 = new Server();
-		server2.setUrl("http://localhost:8090/");
-		server2.setDescription("Server for Production");
+		server2.setUrl("http://192.168.30.142:8080/");
+		server2.setDescription("Server for remote testing");
 		
 		Contact co = new Contact();
 		co.setEmail("Developer@gmail.com");
