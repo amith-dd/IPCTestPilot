@@ -106,6 +106,8 @@ public class StudentService {
 		}
 		throw new InvalidEmailException("student email invalid, no user exists with the given user email");
 	}
+	
+	
 
 	// find students by course ID
 
@@ -114,7 +116,7 @@ public class StudentService {
 		if (course != null) {
 			List<Student> students = dao.findStudentsByCourseId(courseId);
 			List<StudentDto> dtos = new ArrayList<StudentDto>();
-			if (!students.isEmpty()) {
+			if (students != null && !students.isEmpty()) {
 				for (Student st : students) {
 					StudentDto dto = new StudentDto();
 					mapper.map(st, dto);

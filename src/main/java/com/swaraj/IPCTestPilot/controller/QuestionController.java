@@ -26,7 +26,6 @@ import io.swagger.v3.oas.annotations.Operation;
 public class QuestionController {
 	
 	
-	
 	@Autowired
     private QuestionService questionService;
 
@@ -54,9 +53,11 @@ public class QuestionController {
         return questionService.updateQuestion(question, id);
     }
 
+
     @GetMapping("/subject/{subjectId}")
     @Operation(summary = "Get List of Questions By Subject ID")
-    public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(@PathVariable int subjectId, @RequestParam int numberOfQuestions) {
+    public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(@RequestParam int subjectId, @RequestParam int numberOfQuestions) {
+
         return questionService.getQuestions(subjectId, numberOfQuestions);
     }
 

@@ -19,7 +19,7 @@ import com.swaraj.IPCTestPilot.util.ResponseStructure;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("course")
+@RequestMapping("/course")
 public class CourseController {
 	
 	@Autowired
@@ -36,9 +36,9 @@ public class CourseController {
 	public ResponseEntity<ResponseStructure<List<Course>>> getAllCourses(){
 		return service.getAllCourses();
 	}
-	
-	@GetMapping("/{id}")
+
 	@Operation(summary = "Getting All Subjects By Course ID")
+	@GetMapping("/{courseId}")
 	public ResponseEntity<ResponseStructure<List<String>>> getAllSubjectByCourseId(@PathVariable int courseId){
 		return service.getAllSubjectByCourseId(courseId);
 	}
