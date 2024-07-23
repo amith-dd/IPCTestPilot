@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.stereotype.Repository;
 
-
-import com.swaraj.IPCTestPilot.dto.Quiz;
+import com.swaraj.IPCTestPilot.entity.Quiz;
 import com.swaraj.IPCTestPilot.repo.QuizRepo;
 
 /**
@@ -26,6 +23,7 @@ public class QuizDao {
 	QuestionDao questionDao;
 
 	/**
+	 * This
 	 * @param quiz
 	 * @return
 	 */ 
@@ -66,7 +64,7 @@ public class QuizDao {
 	public Quiz updateQuiz(Quiz quiz, int quizId) {
 		Quiz dbquiz = findQuiz(quizId);
 		if (dbquiz != null) {
-			quiz.setQuizId(quizId);
+//			quiz.setQuizId(quizId);
 			return quizRepo.save(quiz);
 		}
 		return null;
@@ -77,15 +75,15 @@ public class QuizDao {
 	 */
 	public List<Quiz> findAll() {
 		return quizRepo.findAll();
-	}
+	}                                                         
 
 	/**
 	 * @param subject
 	 * @param numofQuestions
-	 * @return
+	 * @return 
 	 */
-	public Quiz createQuiz(String subject, int numofQuestions) {
-		List<Integer> l = questionDao.getQuestions(subject, numofQuestions);
+	public Quiz createQuiz(int subjectId, int numofQuestions) {
+		List<Integer> l = questionDao.getQuestions(subjectId, numofQuestions);
 		Quiz quiz = new Quiz();
 		quiz.setQuestionIds(l);
 		return quizRepo.save(quiz);

@@ -2,48 +2,70 @@ package com.swaraj.IPCTestPilot.dao;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.swaraj.IPCTestPilot.dto.Result;
+import com.swaraj.IPCTestPilot.entity.Result;
 import com.swaraj.IPCTestPilot.repo.ResultRepo;
+
+/**
+ * DAO class of {@link Result}
+ * 
+ * @author Ajay
+ * 
+ */
 @Repository
 public class ResultDao {
 	@Autowired
-	ResultRepo resultRepo;
-	
+	ResultRepo repo;
+
+	/**
+	 * @param result
+	 * @return Result
+	 */
 	public Result saveResult(Result result) {
-		return resultRepo.save(result);
+		return repo.save(result);
 	}
-	
-	public Result findResult(int studentId) {
-		Optional<Result> opresult = resultRepo.findById(studentId);
-		if(opresult.isPresent()) {
+
+	/**
+	 * @param studentId
+	 * @return Result
+	 */
+	public Result findResult(int resultId) {
+		Optional<Result> opresult = repo.findById(resultId);
+		if (opresult.isPresent()) {
 			return opresult.get();
 		}
 		return null;
 	}
-	
-	public Result deleteResult(int studentId) {
-		Result result = findResult(studentId);
-		if(result!=null) {
-			resultRepo.delete(result);
-			return result;
+
+	/**
+	 * @param
+	 * @return list of Result
+	 */
+	public List<Result> findAll() {
+		return repo.findAll();
+	}
+
+	/**
+	 * @param quizId
+	 * @return list of Result's
+	 */
+	public List<Result> findResultByQuizId(int quizId) {
+		List<Result> list = repo.findByresultId(quizId);
+		if (list != null) {
+			return list;
 		}
 		return null;
 	}
-	
-	public List<Result> findAll()
-	{
-		return resultRepo.findAll();
-	}
-	
-	public List<Result> findAllById(int studentId)
-	{
-		List<Result> list=resultRepo.findAllById(studentId);
-		if(list!=null)
-		{
+
+	/**
+	 * @param studentId
+	 * @return list of Result's
+	 */
+	public List<Result> findResultByStudentId(int studentId) {
+		List<Result> list = repo.findBystudentId(studentId);
+		if (list != null) {
 			return list;
 		}
 		return null;
