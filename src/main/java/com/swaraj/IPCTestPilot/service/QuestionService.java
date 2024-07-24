@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
 import com.swaraj.IPCTestPilot.dto.QuestionDto;
 import com.swaraj.IPCTestPilot.entity.Question;
+import com.swaraj.IPCTestPilot.exception.InvalidCorrectAnswerException;
+import com.swaraj.IPCTestPilot.exception.InvalidOptionException;
+import com.swaraj.IPCTestPilot.exception.InvalidQuestionException;
+import com.swaraj.IPCTestPilot.exception.InvalidSubjectIdException;
 import com.swaraj.IPCTestPilot.exception.QuestionNotFoundException;
 import com.swaraj.IPCTestPilot.exception.QuestionSaveFailedException;
 import com.swaraj.IPCTestPilot.repo.QuestionRepo;
@@ -37,8 +41,9 @@ public class QuestionService {
     public ResponseEntity<ResponseStructure<QuestionDto>> saveQuestion(Question question) {
         Question savedQuestion = dao.saveQuestion(question);
         if (savedQuestion != null) {
-            QuestionDto qdto = new QuestionDto();
-            mapper.map(savedQuestion, qdto);
+          
+            QuestionDto qdto = mapper.map(savedQuestion, QuestionDto.class);
+            
             ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
             structure.setData(qdto);
             structure.setMessage("Question saved");
@@ -165,6 +170,30 @@ public class QuestionService {
         }
         
         throw new QuestionNotFoundException("Questions not found for the provided IDs");
+    }
+    
+    private void validateQuestion(Question question) {
+        if (question.getSubjectId() < 1 || question.getSubjectId() > 1000) {
+            throw new InvalidSubjectIdException("Subject ID must be between 1 and 1000.");
+        }
+        if (question.getQuestion() == null || question.getQuestion().isBlank()) {
+            throw new InvalidQuestionException("Question cannot be null or blank.");
+        }
+        if (question.getOptionA() == null || question.getOptionA().isBlank()) {
+            throw new InvalidOptionException("Option A cannot be null or blank.");
+        }
+        if (question.getOptionB() == null || question.getOptionB().isBlank()) {
+            throw new InvalidOptionException("Option B cannot be null or blank.");
+        }
+        if (question.getOptionC() == null || question.getOptionC().isBlank()) {
+            throw new InvalidOptionException("Option C cannot be null or blank.");
+        }
+        if (question.getOptionD() == null || question.getOptionD().isBlank()) {
+            throw new InvalidOptionException("Option D cannot be null or blank.");
+        }
+        if (question.getCorrectAnswer() == null || question.getCorrectAnswer().isBlank()) {
+            throw new InvalidCorrectAnswerException("Correct Answer cannot be null or blank.");
+        }
     }
 
 }

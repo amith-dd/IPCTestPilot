@@ -19,6 +19,8 @@ import com.swaraj.IPCTestPilot.entity.Question;
 import com.swaraj.IPCTestPilot.service.QuestionService;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("question")
 public class QuestionController {
@@ -28,31 +30,39 @@ public class QuestionController {
     private QuestionService questionService;
 
     @PostMapping
+    @Operation(summary = "Save a Question")
     public ResponseEntity<ResponseStructure<QuestionDto>> saveQuestion(@RequestBody Question question) {
         return questionService.saveQuestion(question);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Find Question by ID")
     public ResponseEntity<ResponseStructure<QuestionDto>> findQuestion(@PathVariable int id) {
         return questionService.findQuestion(id);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete Question by ID")
     public ResponseEntity<ResponseStructure<QuestionDto>> deleteQuestion(@PathVariable int id) {
         return questionService.deleteQuestion(id);
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update Question by ID")
     public ResponseEntity<ResponseStructure<QuestionDto>> updateQuestion(@RequestBody Question question, @PathVariable int id) {
         return questionService.updateQuestion(question, id);
     }
 
-    @GetMapping
+
+    @GetMapping("/subject/{subjectId}")
+    @Operation(summary = "Get List of Questions By Subject ID")
     public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(@RequestParam int subjectId, @RequestParam int numberOfQuestions) {
+
         return questionService.getQuestions(subjectId, numberOfQuestions);
     }
 
     @PostMapping("/byIds")
+    @Operation(summary = "Find Multiple Questions By Question ID's")
     public ResponseEntity<ResponseStructure<List<QuestionDto>>> getQuestionsByQuestionId(@RequestBody List<Integer> questionIds) {
         return questionService.getQuestionsByQuestionId(questionIds);
     }
