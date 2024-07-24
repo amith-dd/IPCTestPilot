@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.swaraj.IPCTestPilot.dao.UserDao;
 import com.swaraj.IPCTestPilot.dto.UserDto;
 import com.swaraj.IPCTestPilot.entity.User;
+import com.swaraj.IPCTestPilot.exception.InvalidSubjectIdException;
 import com.swaraj.IPCTestPilot.exception.UserNotFoundException;
 import com.swaraj.IPCTestPilot.exception.UserSaveFailedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
@@ -26,13 +27,19 @@ public class UserService {
     
     @Autowired
     private ModelMapper mapper;
+    
+    private static final int MIN_SUBJECT_ID = 0;
+    private static final int MAX_SUBJECT_ID = 13;
+    
+    public ResponseEntity<ResponseStructure<UserDto>> signupUser(User user) {
+        if (!dao.validateUserSubjectIds(user.getUserSubjectIds(), MIN_SUBJECT_ID, MAX_SUBJECT_ID)) {
+            throw new InvalidSubjectIdException("User subject IDs must be between " + MIN_SUBJECT_ID + " and " + MAX_SUBJECT_ID);
+        }
 
-    public ResponseEntity<ResponseStructure<UserDto>> singupUser(User user) {
-        User singupUser = dao.singupUser(user);
-        if (singupUser != null) {
+        User signupUser = dao.singupUser(user);
+        if (signupUser != null) {
             UserDto udto = new UserDto();
-            mapper.map(singupUser, udto);
-
+            mapper.map(signupUser, udto);
 
             ResponseStructure<UserDto> structure = new ResponseStructure<>();
             structure.setData(udto);
@@ -62,7 +69,7 @@ public class UserService {
 
     public ResponseEntity<ResponseStructure<List<UserDto>>> findAllUser() {
         List<User> users = dao.findAllUser();
-        if (users != null) {
+        if (users != null && !users.isEmpty()) {
         List<UserDto> userDtos = users.stream().map(user -> {
             UserDto udto = new UserDto();
             mapper.map(user, udto);

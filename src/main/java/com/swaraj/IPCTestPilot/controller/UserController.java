@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<ResponseStructure<UserDto>> signupUser(@RequestBody User user) {
-        return userService.singupUser(user);
+        return userService.signupUser(user);
     }
 
     @GetMapping("/{userId}")
@@ -34,8 +34,8 @@ public class UserController {
         return userService.findAllUser();
     }
 
-    @DeleteMapping
-    public ResponseEntity<ResponseStructure<UserDto>> deleteUser(@RequestParam int userId) {
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<ResponseStructure<UserDto>> deleteUser(@PathVariable int userId) {
         return userService.deleteUser(userId);
     }
 
@@ -44,7 +44,7 @@ public class UserController {
         return userService.updateUser(user, userId);
     }
 
-    @PostMapping("/verify")
+    @PostMapping("/login")
     public ResponseEntity<ResponseStructure<Boolean>> verifyUser(@RequestParam String email, @RequestParam String password) {
         return userService.verifyUser(email, password);
     }

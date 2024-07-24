@@ -28,7 +28,12 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }	
+    } 
+	
+	@ExceptionHandler(InvalidSubjectIdException.class)
+    public ResponseEntity<String> handleInvalidSubjectIdException(InvalidSubjectIdException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
 
 	@ExceptionHandler(CourseNotFoundException.class)
