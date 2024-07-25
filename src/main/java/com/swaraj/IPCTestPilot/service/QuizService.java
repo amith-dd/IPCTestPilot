@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import com.swaraj.IPCTestPilot.dao.QuizDao;
 import com.swaraj.IPCTestPilot.entity.Quiz;
-import com.swaraj.IPCTestPilot.exception.CourseNotFoundException;
-import com.swaraj.IPCTestPilot.exception.CourseNotSavedException;
+import com.swaraj.IPCTestPilot.exception.QuestionNotFoundException;
 import com.swaraj.IPCTestPilot.exception.QuizNotFoundException;
 import com.swaraj.IPCTestPilot.exception.QuizNotSavedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
@@ -91,11 +91,11 @@ public class QuizService {
 		String message = null;
 		if (deleteQuiz != null) {
 			message = "Quiz deleted";
-			httpStatus = HttpStatus.ACCEPTED;
+			httpStatus = HttpStatus.OK; 
 		} else {
 			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
-		structure.setData(deleteQuiz);
+//		structure.setData(deleteQuiz);
 		structure.setMessage(message);
 		structure.setStatus(httpStatus.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Quiz>>(structure, httpStatus);
@@ -159,8 +159,8 @@ public class QuizService {
 	 * @return {@link ResponseEntity} of type {@link ResponseStructure} if created
 	 *         successfully
 	 */
-	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final int subjectId, final int numberofQuestions) {
-		final Quiz createdQuiz = dao.createQuiz(subjectId, numberofQuestions);
+	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(final int subjectId, final int numberOfquestions) {
+		final Quiz createdQuiz = dao.createQuiz(subjectId, numberOfquestions);
 		final ResponseStructure<Quiz> structure = new ResponseStructure<Quiz>();
 		HttpStatus httpStatus = null;
 		String message = null;
@@ -168,9 +168,7 @@ public class QuizService {
 			message = "Created"; 
 			httpStatus = HttpStatus.CREATED;
 		} else {
-			message = "Unable to create Quiz";
-			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			
+			throw new QuestionNotFoundException("Question not found with the given ID");
 		}
 		structure.setData(createdQuiz);
 		structure.setMessage(message);

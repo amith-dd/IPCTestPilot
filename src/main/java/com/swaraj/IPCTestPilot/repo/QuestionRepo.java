@@ -20,8 +20,8 @@ import com.swaraj.IPCTestPilot.entity.Question;
 public interface QuestionRepo extends JpaRepository<Question, Integer> {
 
 
-    @Query(value = "SELECT q.questionId FROM Question q WHERE q.subject = :subject ORcDER BY q.questionId ASC LIMIT :limit", nativeQuery = true)
-    List<Integer> findQuestionIdsBySubject(@Param("subject") String subject, @Param("limit") int limit);
+    @Query(value = "SELECT q.question_Id FROM Question q WHERE q.subject_id = :subjectId ORDER BY q.question_Id ASC LIMIT :limit", nativeQuery = true)
+    List<Integer> findQuestionIdsBySubject(@Param("subjectId") int subjectId, @Param("limit") int limit);
 
 	/**
      * Finds a list of question IDs based on the subject ID and limits the number of results randomly.
@@ -30,8 +30,8 @@ public interface QuestionRepo extends JpaRepository<Question, Integer> {
      * @param limit The maximum number of questions to retrieve.
      * @return A list of question IDs.
      */
-    @Query(value = "SELECT q.questionId FROM Question q WHERE q.subjectId = ?1 ORDER BY RANDOM() LIMIT : ?2", nativeQuery = true)
-    List<Integer> findQuestionIdsBySubjectId(int subjectId, int limit);
+    @Query("SELECT q FROM Question q WHERE q.questionId IN :questionIds")
+    List<Question> findAllByQuestionIdIn(@Param("questionIds") List<Integer> questionIds);
 
 }
 

@@ -62,14 +62,14 @@ public class QuizDao {
 	 * @return
 	 */
 	public Quiz updateQuiz(Quiz quiz, int quizId) {
-		Quiz dbquiz = findQuiz(quizId);
-		if (dbquiz != null) {
-			quiz.setQuizId(quizId);
-			return quizRepo.save(quiz);
-		}
-		return null;
+	    Quiz dbQuiz = findQuiz(quizId);
+	    if (dbQuiz != null) {
+	        dbQuiz.setSubjectId(quiz.getSubjectId());
+	        dbQuiz.setQuestionIds(quiz.getQuestionIds());
+	        return quizRepo.save(dbQuiz);
+	    }
+	    return null;
 	}
-
 	/**
 	 * @return
 	 */
@@ -83,10 +83,11 @@ public class QuizDao {
 	 * @return 
 	 */
 	public Quiz createQuiz(int subjectId, int numofQuestions) {
-		List<Integer> l = questionDao.getQuestions(subjectId, numofQuestions);
-		Quiz quiz = new Quiz();
-		quiz.setQuestionIds(l);
-		return quizRepo.save(quiz);
+		 List<Integer> questionIds = questionDao.getQuestions(subjectId, numofQuestions);
+		    Quiz quiz = new Quiz();
+		    quiz.setSubjectId(subjectId); // Set the subjectId
+		    quiz.setQuestionIds(questionIds);
+		    return quizRepo.save(quiz); 
 	}
 
 }

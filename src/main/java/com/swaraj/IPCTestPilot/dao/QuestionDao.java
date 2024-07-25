@@ -50,10 +50,10 @@ public class QuestionDao {
 
 
     public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
-        return repo.findQuestionIdsBySubjectId(subjectId, numberOfQuestions);
+        return repo.findQuestionIdsBySubject(subjectId, numberOfQuestions);
 
     }
- 
+  
 
     
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {

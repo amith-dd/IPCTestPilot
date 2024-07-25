@@ -22,34 +22,34 @@ import com.swaraj.IPCTestPilot.util.ResponseStructure;
 @RequestMapping("quiz")
 public class QuizController {
 	@Autowired
-	QuizService service;
+	QuizService service; 
 
-	@PostMapping
-	public ResponseEntity<ResponseStructure<Quiz>> saveQuiz(@RequestBody Quiz quiz) {
-		return service.saveQuiz(quiz);
-	}
+//	@PostMapping
+//	public ResponseEntity<ResponseStructure<Quiz>> saveQuiz(@RequestBody Quiz quiz) {
+//		return service.saveQuiz(quiz);
+//	}
 
 	@GetMapping("findall")
 	public ResponseEntity<ResponseStructure<List<Quiz>>> findAll() {
 		return service.findAll();
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{quizId}")
 	public ResponseEntity<ResponseStructure<Quiz>> findQuiz(@PathVariable int quizId) {
 		return service.findQuiz(quizId);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{quizId}")
 	public ResponseEntity<ResponseStructure<Quiz>> deleteQuiz(@PathVariable int quizId) {
 		return service.deleteQuiz(quizId);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{quizId}")
 	public ResponseEntity<ResponseStructure<Quiz>> updateQuiz(@RequestBody Quiz quiz, @PathVariable int quizId) {
 		return service.updateQuiz(quiz, quizId);
 	}
-
-	@PostMapping("createquiz")
+ 
+	@PostMapping
 	public ResponseEntity<ResponseStructure<Quiz>> createQuiz(@RequestBody Map<String, Integer> input) {
 		return service.createQuiz(input.get("subjectId"), input.get("numberOfquestions"));
 	}
