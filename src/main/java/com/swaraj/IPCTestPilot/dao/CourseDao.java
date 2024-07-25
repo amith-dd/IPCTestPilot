@@ -13,7 +13,7 @@ import com.swaraj.IPCTestPilot.repo.CourseRepo;
 
 @Repository
 public class CourseDao {
-	
+
 	@Autowired
 	CourseRepo repo;
 	

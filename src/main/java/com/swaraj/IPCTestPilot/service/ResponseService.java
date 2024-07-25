@@ -37,8 +37,8 @@ public class ResponseService {
 		
 		if(existResponse != null) {
 			
-		    Response updatedResponse = resultGenerator(existResponse);
-			structure.setData(updatedResponse);
+//		    Response updatedResponse = resultGenerator(existResponse);
+//			structure.setData(updatedResponse);
 			structure.setMessage("Response saved successfully");
 			structure.setStatus(HttpStatus.CREATED.value());
 			return new ResponseEntity<ResponseStructure<Response>>(structure, HttpStatus.CREATED);
@@ -85,27 +85,27 @@ public class ResponseService {
 	
 	//result generator
 	
-	public Response resultGenerator(Response response){
+//	public Response resultGenerator(Response response){
 		
-	    response.setMark(markGenerator(response));
-	    Response updatedResponse =  dao.updateResponse(response, response.getResponseId());
+//	    response.setMark(markGenerator(response));
+//	    Response updatedResponse =  dao.updateResponse(response, response.getResponseId());
 	    //result intialization 
-		resulDao.saveResponse(response);
+//		resulDao.saveResponse(response);
 		
-		if(updatedResponse != null) {
-			
-			return updatedResponse;
-		}
-		else return null;
+//		if(updatedResponse != null) {
+//			
+//			return updatedResponse;
+//		}
+//		else return null;
 	}
 	
 	//mark generator
 	
-	public int markGenerator(Response response) {
-			
-		List<Integer> questions = quizDao.findQuiz(response.getQuizId()).getQuestionIds();
-		List<Integer> correctlyAnsweredQuestion = questions.stream().filter(qid->questionDao.findQuestion(qid).getCorrectAnswer().equals(response.getAnswers())).toList();
-		return correctlyAnsweredQuestion.size();
-	}
-}
+//	public int markGenerator(Response response) {
+//			
+////		List<Integer> questions = quizDao.findQuiz(response.getQuizId()).getQuestionIds();
+////		List<Integer> correctlyAnsweredQuestion = questions.stream().filter(qid->questionDao.findQuestion(qid).getCorrectAnswer().equals(response.getAnswers())).toList();
+//		return correctlyAnsweredQuestion.size();
+//	}
+//}
 

@@ -62,6 +62,7 @@ public class QuizDao {
 	 * @return
 	 */
 	public Quiz updateQuiz(Quiz quiz, int quizId) {
+<<<<<<< HEAD
 	    Quiz dbQuiz = findQuiz(quizId);
 	    if (dbQuiz != null) {
 	        dbQuiz.setSubjectId(quiz.getSubjectId());
@@ -69,6 +70,14 @@ public class QuizDao {
 	        return quizRepo.save(dbQuiz);
 	    }
 	    return null;
+=======
+		Quiz dbquiz = findQuiz(quizId);
+		if (dbquiz != null) {
+//			quiz.setQuizId(quizId);
+			return quizRepo.save(quiz);
+		}
+		return null;
+>>>>>>> 3830d1248b1d334d966cea85bdc510c64daecbfe
 	}
 	/**
 	 * @return
