@@ -25,6 +25,8 @@ public class Student {
 	private int studentCourseId;
 	@ElementCollection
 	private List<Integer> studentResultIds;
+	
 
+	
 	
 }

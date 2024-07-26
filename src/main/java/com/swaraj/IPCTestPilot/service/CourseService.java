@@ -28,7 +28,8 @@ public class CourseService {
 		
 		Course course = new Course();
 		course.setCourseName(courseName);
-		course.setSubjectIds(subjectids);
+        course.setSubjectIds(subjectids);
+
 		
 		Course savedCourse = dao.saveCourse(course);
 		if (savedCourse != null) {

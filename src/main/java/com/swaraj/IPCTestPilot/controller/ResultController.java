@@ -16,6 +16,8 @@ import com.swaraj.IPCTestPilot.entity.Result;
 import com.swaraj.IPCTestPilot.service.ResultService;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("result")
 public class ResultController {
@@ -23,26 +25,31 @@ public class ResultController {
 	ResultService service;
 	
 	@PostMapping
+	@Operation(summary = "Save Result")
 	public ResponseEntity<ResponseStructure<Result>> saveResult(@RequestBody Result result){
 		return service.saveResult(result);
 	}
 	
 	@GetMapping("/{id}")
+	@Operation(summary = "Find a Result By Result ID")
 	public ResponseEntity<ResponseStructure<Result>> findResult(@PathVariable int resultId){
 		return service.findResult(resultId);
 	}
 	
 	@GetMapping("getall")
+	@Operation(summary = "Get All Results")
 	public ResponseEntity<ResponseStructure<List<Result>>> findAll(){
 		return service.findAll();
 	}
 	
 	@GetMapping("resultbyquizid/{id}")
+	@Operation(summary = "Find Result List by Quiz Id")
 	public ResponseEntity<ResponseStructure<List<Result>>> findResultByQuizId(@RequestParam int QuizId){
 		return service.findResultByQuizId(QuizId);
 	}
 
 	@GetMapping("resultbystudentid/{id}")
+	@Operation(summary = "Find List Of Result For Student By Student ID")
 	public ResponseEntity<ResponseStructure<List<Result>>> findResultByStudentId(@RequestParam int StudentId){
 		return service.findResultByStudentId(StudentId);
 	}

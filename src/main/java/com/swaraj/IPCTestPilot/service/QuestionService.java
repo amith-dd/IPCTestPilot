@@ -1,17 +1,19 @@
 package com.swaraj.IPCTestPilot.service;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
 import com.swaraj.IPCTestPilot.dto.QuestionDto;
 import com.swaraj.IPCTestPilot.entity.Question;
 import com.swaraj.IPCTestPilot.exception.QuestionNotFoundException;
 import com.swaraj.IPCTestPilot.exception.QuestionSaveFailedException;
+import com.swaraj.IPCTestPilot.repo.QuestionRepo;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
 
 @Service
@@ -19,7 +21,10 @@ public class QuestionService {
 
     @Autowired
     QuestionDao dao;
-
+    
+    @Autowired
+    private QuestionRepo repo;
+    
     @Autowired
     ModelMapper mapper;
 
@@ -32,8 +37,9 @@ public class QuestionService {
     public ResponseEntity<ResponseStructure<QuestionDto>> saveQuestion(Question question) {
         Question savedQuestion = dao.saveQuestion(question);
         if (savedQuestion != null) {
-            QuestionDto qdto = new QuestionDto();
-            mapper.map(savedQuestion, qdto);
+          
+            QuestionDto qdto = mapper.map(savedQuestion, QuestionDto.class);
+            
             ResponseStructure<QuestionDto> structure = new ResponseStructure<>();
             structure.setData(qdto);
             structure.setMessage("Question saved");
@@ -110,7 +116,6 @@ public class QuestionService {
        
         throw new QuestionNotFoundException("Question not found with ID: " + questionId);
     }
-
     /**
      * Retrieves a list of question IDs based on the subject ID and limits the number of results.
      *
@@ -118,20 +123,25 @@ public class QuestionService {
      * @param numberOfQuestions The maximum number of questions to retrieve.
      * @return A response entity with the list of question IDs.
      */
-    public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions(int subjectId, int numberOfQuestions) {
-        List<Integer> questionIds = dao.getQuestions(subjectId, numberOfQuestions);
-        if (questionIds != null && !questionIds.isEmpty()) {
-            ResponseStructure<List<Integer>> structure = new ResponseStructure<>();
-            structure.setData(questionIds);
-            structure.setMessage("Questions retrieved");
-            structure.setStatus(HttpStatus.OK.value());
+//    public List<Integer> getQuestions(int subjectId, int numberOfQuestions) {
+//        return repo.findQuestionIdsBySubject(subjectId, numberOfQuestions);
+//    }
+    public ResponseEntity<ResponseStructure<List<Integer>>> getQuestions( int subjectId,int numberOfQuestions) {
+    	 List<Integer> questionIds = dao.getQuestions(subjectId, numberOfQuestions);
 
-            return new ResponseEntity<ResponseStructure<List<Integer>>>(structure, HttpStatus.OK);
-        }
+         if (questionIds != null && !questionIds.isEmpty()) {
+             ResponseStructure<List<Integer>> structure = new ResponseStructure<>();
+             structure.setData(questionIds);
+             structure.setMessage("Questions retrieved");
+             structure.setStatus(HttpStatus.OK.value());
+
+             return ResponseEntity.ok(structure);
+         }
+
+         throw new QuestionNotFoundException("No questions found for subject ID: " + subjectId);
       
-       throw new QuestionNotFoundException("No questions found for subject ID: " + subjectId);
+       
     }
-
     /**
      * Retrieves a list of questions based on their IDs and returns a response entity with the list of question DTOs.
      *
