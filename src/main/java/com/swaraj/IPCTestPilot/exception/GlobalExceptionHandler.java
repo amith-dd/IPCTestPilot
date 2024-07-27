@@ -35,6 +35,54 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<Object>(structure, HttpStatus.FORBIDDEN);
 	}
 
+
+    @ExceptionHandler(InvalidQuestionException.class)
+    public ResponseEntity<String> handleInvalidQuestionException(InvalidQuestionException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidOptionException.class)
+    public ResponseEntity<String> handleInvalidOptionException(InvalidOptionException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidCorrectAnswerException.class)
+    public ResponseEntity<String> handleInvalidCorrectAnswerException(InvalidCorrectAnswerException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(InvalidUserNameException.class)
+    public ResponseEntity<String> handleInvalidUserNameException(InvalidUserNameException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidUserContactException.class)
+    public ResponseEntity<String> handleInvalidUserContactException(InvalidUserContactException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidUserEmailException.class)
+    public ResponseEntity<String> handleInvalidUserEmailException(InvalidUserEmailException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidUserPasswordException.class)
+    public ResponseEntity<String> handleInvalidUserPasswordException(InvalidUserPasswordException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidUserRoleException.class)
+    public ResponseEntity<String> handleInvalidUserRoleException(InvalidUserRoleException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidUserSubjectIdsException.class)
+    public ResponseEntity<String> handleInvalidUserSubjectIdsException(InvalidUserSubjectIdsException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+
+
 	@ExceptionHandler(QuestionSaveFailedException.class)
 	public ResponseEntity<String> handleQuestionSaveFailedException(QuestionSaveFailedException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

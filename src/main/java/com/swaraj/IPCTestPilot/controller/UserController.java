@@ -39,7 +39,7 @@ public class UserController {
         return userService.findAllUser();
     }
 
-    @DeleteMapping("/{userId}")
+	@DeleteMapping("/{userId}")
     @Operation(summary = "Delete User By User ID")
     public ResponseEntity<ResponseStructure<UserDto>> deleteUser(@RequestParam int userId) {
         return userService.deleteUser(userId);
@@ -51,7 +51,8 @@ public class UserController {
         return userService.updateUser(user, userId);
     }
 
-    @PostMapping("/login")
+
+    @PostMapping("/verify")
     @Operation(summary = "Verify User Details")
     public ResponseEntity<ResponseStructure<Boolean>> verifyUser(@RequestParam String email, @RequestParam String password) {
         return userService.verifyUser(email, password);

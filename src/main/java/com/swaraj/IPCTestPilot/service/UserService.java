@@ -13,6 +13,12 @@ import com.swaraj.IPCTestPilot.dao.UserDao;
 import com.swaraj.IPCTestPilot.dto.UserDto;
 import com.swaraj.IPCTestPilot.entity.User;
 import com.swaraj.IPCTestPilot.exception.InvalidSubjectIdException;
+import com.swaraj.IPCTestPilot.exception.InvalidUserContactException;
+import com.swaraj.IPCTestPilot.exception.InvalidUserEmailException;
+import com.swaraj.IPCTestPilot.exception.InvalidUserNameException;
+import com.swaraj.IPCTestPilot.exception.InvalidUserPasswordException;
+import com.swaraj.IPCTestPilot.exception.InvalidUserRoleException;
+import com.swaraj.IPCTestPilot.exception.InvalidUserSubjectIdsException;
 import com.swaraj.IPCTestPilot.exception.UserNotFoundException;
 import com.swaraj.IPCTestPilot.exception.UserSaveFailedException;
 import com.swaraj.IPCTestPilot.util.ResponseStructure;
@@ -172,4 +178,27 @@ public class UserService {
         }
         throw new UserNotFoundException("No users found for subject ID: " + subjectId);
     }
+    
+    private void validateUser(User user) {
+        if (user.getUserName() == null || user.getUserName().isBlank()) {
+            throw new InvalidUserNameException("User name cannot be null or blank.");
+        }
+        if (user.getUserContact() < 1000000000L) {
+            throw new InvalidUserContactException("User contact must be at least 10 digits.");
+        }
+        if (user.getUserEmail() == null || user.getUserEmail().isBlank() || !user.getUserEmail().matches("^(.+)@(.+)$")) {
+            throw new InvalidUserEmailException("User email cannot be null, blank, and must be a valid email address.");
+        }
+        if (user.getUserPassword() == null || user.getUserPassword().isBlank() || user.getUserPassword().length() < 6) {
+            throw new InvalidUserPasswordException("User password cannot be null, blank, and must be at least 6 characters.");
+        }
+        if (user.getUserRole() != 0 && user.getUserRole() != 1) {
+            throw new InvalidUserRoleException("User role must be 0 or 1.");
+        }
+
+        if (user.getUserSubjectIds() == null || user.getUserSubjectIds().isEmpty()) {
+            throw new InvalidUserSubjectIdsException("User subject IDs cannot be null or empty.");
+        }
+    }
+
 }
