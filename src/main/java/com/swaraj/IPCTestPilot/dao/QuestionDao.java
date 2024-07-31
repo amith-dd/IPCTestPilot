@@ -53,17 +53,9 @@ public class QuestionDao {
         return repo.findQuestionIdsBySubject(subjectId, numberOfQuestions);
 
     }
-<<<<<<< HEAD
-  
-
-    
-=======
  
->>>>>>> 3830d1248b1d334d966cea85bdc510c64daecbfe
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
         return repo.findAllByQuestionIdIn(questionIds);
-    }
-
-    
+    }    
     
 }

@@ -16,7 +16,7 @@ import jakarta.validation.ConstraintViolationException;
 @RestControllerAdvice
 
 public class GlobalExceptionHandler {
-	
+
 	@ExceptionHandler
 	protected ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException ex) {
 
@@ -45,7 +45,6 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
-
 	@ExceptionHandler(UserSaveFailedException.class)
 	public ResponseEntity<String> handleUserSaveFailedException(UserSaveFailedException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -55,7 +54,6 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
-
 
 	@ExceptionHandler(CourseNotFoundException.class)
 	public ResponseEntity<String> handleCourseNotFoundException(CourseNotFoundException ex) {
@@ -89,30 +87,19 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(StudentNotSavedException.class)
-<<<<<<< HEAD
-    public ResponseEntity<String> handleStudentNotFoundWithGivenIdException(StudentNotSavedException ex) {
-        return new ResponseEntity<String>(ex.getMessage(),HttpStatus.BAD_REQUEST);
-    }
-	
-=======
 	public ResponseEntity<String> handleStudentNotFoundWithGivenIdException(StudentNotSavedException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
->>>>>>> 3830d1248b1d334d966cea85bdc510c64daecbfe
 
 	@ExceptionHandler(ResultNotFoundException.class)
-
 	public ResponseEntity<String> handleResultNotFoundException(ResultNotFoundException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
-	
 
 	@ExceptionHandler(ResultNotSavedException.class)
 	public ResponseEntity<String> handleResultNotSavedException(ResultNotSavedException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
-
 
 	@ExceptionHandler(QuizNotFoundException.class)
 	public ResponseEntity<String> handleQuizNotFoundException(QuizNotFoundException ex) {
@@ -123,13 +110,5 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleQuizNotSavedException(QuizNotSavedException ex) {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
-
-
-
-	
-	
-
-
-
 
 }
