@@ -46,14 +46,14 @@ public class CourseService {
 	
 	public ResponseEntity<ResponseStructure<List<Course>>> getAllCourses(){
 		List<Course> courses = dao.getAll();
-		if(courses.size()>0) {
+		if(courses!=null) {
 			ResponseStructure<List<Course>> structure = new ResponseStructure<List<Course>>();
 			structure.setData(courses);
 			structure.setMessage("data found for all courses");
 			structure.setStatus(HttpStatus.FOUND.value());
 			return new ResponseEntity<ResponseStructure<List<Course>>>(structure,HttpStatus.FOUND);
 		}
-		throw new CourseNotFoundException("course not found with the given ID");
+		throw new CourseNotFoundException("course not found");
 	}
 	
 	/*
