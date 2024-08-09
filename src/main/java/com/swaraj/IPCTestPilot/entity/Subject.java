@@ -1,0 +1,20 @@
+package com.swaraj.IPCTestPilot.entity;
+
+
+public enum Subject {
+	
+	API_TESTING,
+	DJANGO,
+	FIREFLINK,
+	HIBERNATE_SPRING_FRAMEWORK,
+	J2EE,
+	JAVA,
+	JAVA_PROGRAMMING,
+	MANUAL_TESTING,
+	PYTHON,
+	REACT,
+	SELENIUM,
+	SQL,
+	WEB_TECH
+	
+}
