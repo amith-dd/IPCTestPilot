@@ -43,7 +43,7 @@ public class StudentService {
 			structure.setData(dto);
 			structure.setMessage("student save success");
 			structure.setStatus(HttpStatus.CREATED.value());
-			return new ResponseEntity<ResponseStructure<StudentDto>>(structure, HttpStatus.CREATED);
+			return new ResponseEntity<ResponseStructure<StudentDto>>(structure, HttpStatus.OK);
 		}
 		throw new StudentNotSavedException("student save failure");
 	}
@@ -57,7 +57,7 @@ public class StudentService {
 			structure.setData(dto);
 			structure.setMessage("student found success");
 			structure.setStatus(HttpStatus.FOUND.value());
-			return new ResponseEntity<ResponseStructure<StudentDto>>(structure, HttpStatus.FOUND);
+			return new ResponseEntity<ResponseStructure<StudentDto>>(structure, HttpStatus.OK);
 		}
 		throw new StudentNotFoundWithGivenIdException("student not found with the given id");
 	}

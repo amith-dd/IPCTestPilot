@@ -45,7 +45,7 @@ public class QuestionService {
             structure.setMessage("Question saved");
             structure.setStatus(HttpStatus.CREATED.value());
 
-            return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.CREATED);
+            return new ResponseEntity<ResponseStructure<QuestionDto>>(structure, HttpStatus.OK);
         }
        
         throw new QuestionSaveFailedException("Failed to save question");

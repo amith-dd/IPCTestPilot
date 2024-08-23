@@ -37,7 +37,7 @@ public class CourseService {
 			structure.setMessage("course saved");
 			structure.setStatus(HttpStatus.CREATED.value());// gives the code
 
-			return new ResponseEntity<ResponseStructure<Course>>(structure, HttpStatus.CREATED);
+			return new ResponseEntity<ResponseStructure<Course>>(structure, HttpStatus.OK);
 		}
 		throw new CourseNotSavedException("course save failed");
 	}
@@ -49,7 +49,7 @@ public class CourseService {
 			structure.setData(courses);
 			structure.setMessage("data found for all courses");
 			structure.setStatus(HttpStatus.FOUND.value());
-			return new ResponseEntity<ResponseStructure<List<Course>>>(structure, HttpStatus.FOUND);
+			return new ResponseEntity<ResponseStructure<List<Course>>>(structure, HttpStatus.OK);
 		}
 		throw new CourseNotFoundException("course not found");
 	}
@@ -70,7 +70,7 @@ public class CourseService {
 			structure.setData(subjects);
 			structure.setMessage("subjects found for given course Id");
 			structure.setStatus(HttpStatus.FOUND.value());
-			return new ResponseEntity<ResponseStructure<List<String>>>(structure, HttpStatus.FOUND);
+			return new ResponseEntity<ResponseStructure<List<String>>>(structure, HttpStatus.OK);
 		}
 		throw new CourseNotFoundException("course not found with the given ID");
 	}

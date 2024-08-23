@@ -39,7 +39,7 @@ public class UserService {
             structure.setMessage("User saved successfully");
             structure.setStatus(HttpStatus.CREATED.value());
 
-            return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.CREATED);
+            return new ResponseEntity<ResponseStructure<UserDto>>(structure, HttpStatus.OK);
         }
         throw new UserSaveFailedException("Failed to save user");
     }
