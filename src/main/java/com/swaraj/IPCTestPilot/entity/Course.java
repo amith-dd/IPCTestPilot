@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +22,7 @@ public class Course {
 	private int courseId;
 	private String courseName;
 	@ElementCollection
-
+	@JsonIgnore
 	private List<Integer> subjectIds;
 	
 	
