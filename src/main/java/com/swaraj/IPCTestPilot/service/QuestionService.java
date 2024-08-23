@@ -1,13 +1,12 @@
 package com.swaraj.IPCTestPilot.service;
 
 import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.swaraj.IPCTestPilot.dao.QuestionDao;
 import com.swaraj.IPCTestPilot.dto.QuestionDto;
@@ -26,8 +25,10 @@ public class QuestionService {
 	@Autowired
 	private QuestionRepo repo;
 
+
 	@Autowired
 	ModelMapper mapper;
+
 
 	/**
 	 * Saves a question and returns a response entity with the saved question DTO.

@@ -41,7 +41,7 @@ public class ResponseService {
 //			structure.setData(updatedResponse);
 			structure.setMessage("Response saved successfully");
 			structure.setStatus(HttpStatus.CREATED.value());
-			return new ResponseEntity<ResponseStructure<Response>>(structure, HttpStatus.CREATED);
+			return new ResponseEntity<ResponseStructure<Response>>(structure, HttpStatus.OK);
 		}
 		else return null;
 		
@@ -59,7 +59,7 @@ public class ResponseService {
 			structure.setData(existResponse);
 			structure.setMessage("Response saved successfully");
 			structure.setStatus(HttpStatus.CREATED.value());
-			return new ResponseEntity<ResponseStructure<Response>>(structure, HttpStatus.CREATED);
+			return new ResponseEntity<ResponseStructure<Response>>(structure, HttpStatus.OK);
 		}
 		else return null;
 		
@@ -78,7 +78,7 @@ public class ResponseService {
 			structure.setData(existResponses);
 			structure.setMessage("The responses got successfully");
 			structure.setStatus(HttpStatus.FOUND.value());
-			return new ResponseEntity<ResponseStructure<List<Response>>>(structure, HttpStatus.FOUND);
+			return new ResponseEntity<ResponseStructure<List<Response>>>(structure, HttpStatus.OK);
 		}
 		else return null;
 	}
