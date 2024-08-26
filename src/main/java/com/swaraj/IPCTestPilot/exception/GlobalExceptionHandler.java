@@ -36,84 +36,143 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(QuestionSaveFailedException.class)
-	public ResponseEntity<String> handleQuestionSaveFailedException(QuestionSaveFailedException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<ResponseStructure<String>> handleQuestionSaveFailedException(QuestionSaveFailedException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("Question save failed");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(QuestionNotFoundException.class)
-	public ResponseEntity<String> handleQuestionNotFoundException(QuestionNotFoundException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<ResponseStructure<String>> handleQuestionNotFoundException(QuestionNotFoundException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("question not found with the given ID");
+		structure.setStatus(HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 
 	@ExceptionHandler(UserSaveFailedException.class)
-	public ResponseEntity<String> handleUserSaveFailedException(UserSaveFailedException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<ResponseStructure<String>> handleUserSaveFailedException(UserSaveFailedException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("user save failed");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<ResponseStructure<String>> handleUserNotFoundException(UserNotFoundException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("user not found with the given ID");
+		structure.setStatus(HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 
 	@ExceptionHandler(CourseNotFoundException.class)
-	public ResponseEntity<String> handleCourseNotFoundException(CourseNotFoundException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<ResponseStructure<String>> handleCourseNotFoundException(CourseNotFoundException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("course not found with the given ID");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(CourseNotSavedException.class)
-	public ResponseEntity<String> handleCourseNotSavedException(CourseNotSavedException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<ResponseStructure<String>> handleCourseNotSavedException(CourseNotSavedException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("course not saved");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(IncorrectPasswordExeption.class)
-	public ResponseEntity<String> handleIncorrectPasswordExeption(IncorrectPasswordExeption ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<ResponseStructure<String>> handleIncorrectPasswordExeption(IncorrectPasswordExeption ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("incorrect password");
+		structure.setStatus(HttpStatus.FORBIDDEN.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(InvalidEmailException.class)
-	public ResponseEntity<String> handleInvalidEmailException(InvalidEmailException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<ResponseStructure<String>> handleInvalidEmailException(InvalidEmailException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("invalid email");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(NoStudentsFoundForGivenCourseIdException.class)
-	public ResponseEntity<String> handleNoStudentsFoundForGivenCourseIdException(
+	public ResponseEntity<ResponseStructure<String>> handleNoStudentsFoundForGivenCourseIdException(
 			NoStudentsFoundForGivenCourseIdException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NO_CONTENT);
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("no students found for given course id");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(StudentNotFoundWithGivenIdException.class)
-	public ResponseEntity<String> handleStudentNotFoundWithGivenIdException(StudentNotFoundWithGivenIdException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NO_CONTENT);
+	public ResponseEntity<ResponseStructure<String>> handleStudentNotFoundWithGivenIdException(StudentNotFoundWithGivenIdException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("no student exist with the given ID");
+		structure.setStatus(HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(StudentNotSavedException.class)
-	public ResponseEntity<String> handleStudentNotFoundWithGivenIdException(StudentNotSavedException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<ResponseStructure<String>> handleStudentNotFoundWithGivenIdException(StudentNotSavedException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("student could not be saved");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(ResultNotFoundException.class)
-
-	public ResponseEntity<String> handleResultNotFoundException(ResultNotFoundException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<ResponseStructure<String>> handleResultNotFoundException(ResultNotFoundException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("result not found with the given ID");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 	
 
 	@ExceptionHandler(ResultNotSavedException.class)
-	public ResponseEntity<String> handleResultNotSavedException(ResultNotSavedException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<ResponseStructure<String>> handleResultNotSavedException(ResultNotSavedException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("result save failed");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 
 	@ExceptionHandler(QuizNotFoundException.class)
-	public ResponseEntity<String> handleQuizNotFoundException(QuizNotFoundException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<ResponseStructure<String>> handleQuizNotFoundException(QuizNotFoundException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("Quiz not found with the given ID");
+		structure.setStatus(HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(QuizNotSavedException.class)
-	public ResponseEntity<String> handleQuizNotSavedException(QuizNotSavedException ex) {
-		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<ResponseStructure<String>> handleQuizNotSavedException(QuizNotSavedException ex) {
+		ResponseStructure<String> structure = new ResponseStructure<String>();
+		structure.setData(ex.getMessage());
+		structure.setMessage("Quiz save failed");
+		structure.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ResponseStructure<String>>(structure, HttpStatus.NOT_FOUND);
 	}
 
 
