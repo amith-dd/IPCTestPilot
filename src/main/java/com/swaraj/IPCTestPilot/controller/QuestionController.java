@@ -66,6 +66,17 @@ public class QuestionController {
     public ResponseEntity<ResponseStructure<List<QuestionDto>>> getQuestionsByQuestionId(@RequestBody List<Integer> questionIds) {
         return questionService.getQuestionsByQuestionId(questionIds);
     }
+    
+    
+    @GetMapping("/subject/bysubid")
+    @Operation(summary = "Find all Questions By Subject ID")
+    public ResponseEntity<ResponseStructure<List<QuestionDto>>> getQuestionsBySubjectId(@RequestParam int subId) {
+        return questionService.getQuestionsBySubId(subId);
+    }
+    
+    
+    
+    
 }
 	
 	

@@ -57,6 +57,10 @@ public class QuestionDao {
     public List<Question> getQuestionsByQuestionId(List<Integer> questionIds) {
         return repo.findAllByQuestionIdIn(questionIds);
     }
+    
+    public List<Question> getQuestionBySubId(int subid){
+    	return repo.getQuestionBySubjectId(subid);
+    }
 
     
     

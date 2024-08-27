@@ -37,7 +37,7 @@ public class ResultService {
 		String message = null;
 		if (savedResult != null) {
 			message = "Result saved";
-			httpStatus = HttpStatus.CREATED;
+			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to save Result";
 			throw new ResultNotSavedException(message);
@@ -45,7 +45,7 @@ public class ResultService {
 		httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		structure.setData(savedResult);
 		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the
+		structure.setStatus(HttpStatus.CREATED.value());// gives the
 												// code
 		return new ResponseEntity<ResponseStructure<Result>>(structure, httpStatus);
 
@@ -69,6 +69,7 @@ public class ResultService {
 			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Result Not Found";
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findResult);
@@ -92,14 +93,15 @@ public class ResultService {
 		String message = null;
 		if (findAllResult != null) {
 			message = "All Result found";
-			httpStatus = HttpStatus.ACCEPTED;
+			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to find AllResult";
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findAllResult);
 		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the code
+		structure.setStatus(HttpStatus.ACCEPTED.value());// gives the code
 		return new ResponseEntity<ResponseStructure<List<Result>>>(structure, httpStatus);
 	}
 
@@ -121,6 +123,7 @@ public class ResultService {
 			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to find QuizId's";
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findQuiz);
@@ -147,6 +150,7 @@ public class ResultService {
 			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to find StudentId's";
+			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new ResultNotFoundException(message);
 		}
 		structure.setData(findStudent);
