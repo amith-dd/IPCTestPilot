@@ -177,5 +177,7 @@ public class QuizService {
 		structure.setStatus(HttpStatus.CREATED.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Quiz>>(structure, httpStatus);
 	}
+	
+	
 
 }

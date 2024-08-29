@@ -1,11 +1,13 @@
 package com.swaraj.IPCTestPilot.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.swaraj.IPCTestPilot.entity.Question;
 import com.swaraj.IPCTestPilot.entity.Quiz;
 import com.swaraj.IPCTestPilot.repo.QuizRepo;
 
@@ -89,4 +91,16 @@ public class QuizDao {
 		return quizRepo.save(quiz);
 	}
 
+	public List<Question> getQuestionsByQuizId(int quizId){
+		List<Question> questions = new ArrayList<Question>();
+		Optional<Quiz> opquiz = quizRepo.findById(quizId);
+		if(opquiz.isPresent()) {
+			for(Integer i : opquiz.get().getQuestionIds()) {
+				questions.add(questionDao.findQuestion(i));
+			}
+		}
+		return questions;
+	}
+	
+	
 }
