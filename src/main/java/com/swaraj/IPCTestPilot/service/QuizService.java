@@ -40,13 +40,13 @@ public class QuizService {
 		String message = null;
 		if (savedQuiz != null) {
 			message = "Quiz saved";
-			httpStatus = HttpStatus.CREATED;
+			httpStatus = HttpStatus.OK;
 		} else {
 			 throw new QuizNotSavedException("quiz save failed");
 		}
 		structure.setData(savedQuiz);
 		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the code
+		structure.setStatus(HttpStatus.CREATED.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Quiz>>(structure, httpStatus);
 		 
 	}
@@ -91,13 +91,13 @@ public class QuizService {
 		String message = null;
 		if (deleteQuiz != null) {
 			message = "Quiz deleted";
-			httpStatus = HttpStatus.ACCEPTED;
+			httpStatus = HttpStatus.OK;
 		} else {
 			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
 		structure.setData(deleteQuiz);
 		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the code
+		structure.setStatus(HttpStatus.ACCEPTED.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Quiz>>(structure, httpStatus);
 	}
 
@@ -141,13 +141,13 @@ public class QuizService {
 		String message = null;
 		if (findAllquiz != null) {
 			message = "All quiz found";
-			httpStatus = HttpStatus.ACCEPTED;
+			httpStatus = HttpStatus.OK;
 		} else {
 			throw new QuizNotFoundException("Quiz not found with the given ID");
 		}
 		structure.setData(findAllquiz);
 		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the code
+		structure.setStatus(HttpStatus.ACCEPTED.value());// gives the code
 		return new ResponseEntity<ResponseStructure<List<Quiz>>>(structure, httpStatus);
 	}
 
@@ -166,7 +166,7 @@ public class QuizService {
 		String message = null;
 		if (createdQuiz != null) {
 			message = "Created"; 
-			httpStatus = HttpStatus.CREATED;
+			httpStatus = HttpStatus.OK;
 		} else {
 			message = "Unable to create Quiz";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -174,8 +174,10 @@ public class QuizService {
 		}
 		structure.setData(createdQuiz);
 		structure.setMessage(message);
-		structure.setStatus(httpStatus.value());// gives the code
+		structure.setStatus(HttpStatus.CREATED.value());// gives the code
 		return new ResponseEntity<ResponseStructure<Quiz>>(structure, httpStatus);
 	}
+	
+	
 
 }

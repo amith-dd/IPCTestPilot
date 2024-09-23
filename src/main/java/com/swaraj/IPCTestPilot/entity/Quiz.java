@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,8 +25,9 @@ public class Quiz {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int quizId;
-	private List<Integer> subjectId;
-	@ElementCollection
+	private int subjectId;
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable
 	private List<Integer> questionIds; 
 	
 }

@@ -8,10 +8,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import lombok.Data;
 
 @Component
@@ -23,35 +29,32 @@ public class Question {
 	private int questionId;
 	
 	
-	@NotNull(message = "Subject ID cannot be null")
-	@Min(value = 1, message = "Subject ID must be at least 1")
-	@Max(value = 1000, message = "Subject ID must be at most 1000")
+	@Positive(message = "Subject Id should be a Positive Number")
 	private int subjectId;
 	
-	
-	@NotNull(message = "Question cannot be null")
-	@NotBlank(message = "Question cannot be blank")
+	@NotBlank(message = "Question Cannot Be Blank")
+	@NotNull(message = "Question Cannot Be Null")
 	private String question;
 	
-	@NotNull(message = "Option A cannot be null")
-	@NotBlank(message = "Option A cannot be blank")
+	@NotBlank(message = "Options Cannot Be Blank")
+	@NotNull(message = "Options Cannot Be Null")
 	private String optionA;
 	
-	@NotNull(message = "Option B cannot be null")
-	@NotBlank(message = "Option B cannot be blank")
+	@NotBlank(message = "Options Cannot Be Blank")
+	@NotNull(message = "Options Cannot Be Null")
 	private String optionB;
 	
-	@NotNull(message = "Option C cannot be null")
-	@NotBlank(message = "Option C cannot be blank")
+	@NotBlank(message = "Options Cannot Be Blank")
+	@NotNull(message = "Options Cannot Be Null")
 	private String optionC;
 	
-	@NotNull(message = "Option D cannot be null")
-	@NotBlank(message = "Option D cannot be blank")
-	private String optionD;
+	@NotBlank(message = "Options Cannot Be Blank")
+	@NotNull(message = "Options Cannot Be Null")
+	private String optionD; 
 	
-	
-	@NotNull(message = "Correct Answer cannot be null")
-	@NotBlank(message = "Correct Answer cannot be blank")
+	@NotBlank(message = "Answer Cannot Be Blank")
+	@NotNull(message = "Answer Cannot Be Null")
+
 	private String correctAnswer; 
 	
 	
